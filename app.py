@@ -9,82 +9,134 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-.stApp {
-    background-color: #f0f6ff;
-}
 
-.block-container {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    max-width: 1250px;
+/* ---------- MAIN PAGE ---------- */
+
+.stApp {
+    background: #f3f6fb;
 }
+.block-container {
+ max-width: 1150px; 
+ padding-top: 2rem; 
+ padding-bottom: 3rem; 
+ }
+
+/* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-    color: #12366b;
+    color: #17365d !important;
+    font-weight: 700;
 }
 
-div[data-testid="stForm"] {
-    background-color: white;
-    border: 2px solid #1e5aa8;
-    border-radius: 15px;
-    padding: 25px;
+h2 {
+    font-size: 25px !important;
+    margin-top: 20px;
+    margin-bottom: 18px;
 }
 
-div[data-testid="stForm"] label {
-    color: #12366b;
-    font-weight: 600;
+h3 {
+    font-size: 19px !important;
 }
 
-div[data-testid="stFormSubmitButton"] button {
-    background-color: #174b91;
-    color: white;
+/* ---------- SECTION BORDERS ---------- */
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff;
+    border: 1px solid #d5dfec;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(23, 54, 93, 0.06);
+}
+
+/* ---------- INPUT BOXES ---------- */
+
+div[data-testid="stTextInput"] input,
+div[data-testid="stDateInput"] input,
+div[data-testid="stTextArea"] textarea {
+    background-color: #ffffff;
+    border: 1px solid #bdcbdc;
     border-radius: 8px;
-    height: 45px;
-    font-weight: bold;
+    color: #24364b;
+    min-height: 42px;
 }
 
-div[data-testid="stFormSubmitButton"] button:hover {
-    background-color: #0e3265;
-    border: 1px solid #0e3265;
+div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    background-color: #ffffff;
+    border: 1px solid #bdcbdc;
+    border-radius: 8px;
+    min-height: 42px;
 }
 
-div[data-testid="stSelectbox"] div[data-baseweb="select"] {
-    border-radius: 6px;
+/* ---------- LABELS ---------- */
+
+div[data-testid="stWidgetLabel"] p {
+    color: #294563;
+    font-weight: 600;
+    font-size: 14px;
 }
+
+/* ---------- BUTTONS ---------- */
+
+.stButton > button {
+    background-color: #174b78;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.stButton > button:hover {
+    background-color: #0e3457;
+    color: white;
+    border: none;
+}
+
+/* ---------- DIVIDERS ---------- */
 
 hr {
-    border-color: #b6d0f5;
+    border-color: #d5dfec;
+    margin-top: 22px;
+    margin-bottom: 22px;
 }
+
+/* ---------- INFORMATION MESSAGES ---------- */
+
+div[data-testid="stAlert"] {
+    border-radius: 9px;
+}
+
+/* ---------- RESPONSIVE SPACING ---------- */
+
+div[data-testid="stHorizontalBlock"] {
+    gap: 20px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- COLLEGE HEADER WITH LOGO ----------
+# ---------- CENTERED COLLEGE HEADER ----------
 
-col_logo, col_title = st.columns([1,4],gap="small",vertical_alignment="center")
+col1, col2, col3 = st.columns([1, 1, 1])
 
-with col_logo:
-    st.image("bcm_logo.png", width=150)
+with col2:
+    st.image("bcm_logo.png", width=260)
 
-with col_title:
-    st.markdown("""
-    <div style="text-align:center; padding:10px 0px;">
-        <h1 style="color:#a51c83; margin-bottom:0;">
-            B.C.M. COLLEGE, KOTTAYAM
-        </h1>
-        <h3 style="color:#087da5; margin-top:5px;">
-            (AUTONOMOUS)
-        </h3>
-        <h2 style="color:#174b91;">
-            STUDENT REGISTRATION PORTAL
-        </h2>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("""
+<div style="text-align:center; margin-top:-10px; margin-bottom:20px;">
+    <h2 style="color:#17365d; font-size:25px; margin:0;">
+        STUDENT REGISTRATION PORTAL
+    </h2>
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
 st.subheader("Student Registration")
-
 st.caption("Please enter your details carefully.")
+st.divider()
 
 # ---------- UG COURSES ----------
 
@@ -257,7 +309,7 @@ if program_level == "UG":
 
     with st.container(border=True):
 
-        st.markdown("### Class 10 (SSLC) Details")
+        st.markdown("### Class 10 Details")
 
         col1, col2 = st.columns(2)
 
@@ -268,11 +320,9 @@ if program_level == "UG":
             )
 
         with col2:
-            sslc_year = st.number_input(
-                "Year of Passing *",
-                min_value=2000,
-                max_value=date.today().year,
-                step=1
+            sslc_stream = st.text_input(
+    "Current Stream of Study *",
+    placeholder="Enter your current stream of study"
             )
 
         sslc_percentage = st.selectbox(
@@ -285,7 +335,7 @@ elif program_level == "PG":
 
     with st.container(border=True):
 
-        st.markdown("### Class 12 (+2) Details")
+        st.markdown("### Class 12  Details")
 
         col1, col2 = st.columns(2)
 
@@ -296,12 +346,10 @@ elif program_level == "PG":
             )
 
         with col2:
-            plus_two_year = st.number_input(
-                "Year of Passing *",
-                min_value=2000,
-                max_value=date.today().year,
-                step=1
-            )
+            plus_two_stream = st.text_input(
+    "Current Stream of Study *",
+    placeholder="Enter your current stream of study"
+           )
 
         plus_two_percentage = st.selectbox(
             "Percentage Obtained *",
@@ -314,9 +362,9 @@ st.markdown("## 4. Submit Application")
 
 with st.container(border=True):
 
-    st.markdown("Please review your details before submitting.")
+    st.markdown("Please review your details before registering.")
 
-    if st.button("SUBMIT APPLICATION", type="primary", use_container_width=True):
+    if st.button("REGISTER", type="primary", use_container_width=True):
 
         errors = []
 
