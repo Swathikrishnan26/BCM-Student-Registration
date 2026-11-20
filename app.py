@@ -226,7 +226,7 @@ with st.container(border=True):
         dob = st.date_input(
             "Date of Birth *",
             value=None,
-            min_value=date(1980, 1, 1),
+            min_value=date(1990, 1, 1),
             max_value=date.today(),
             format="DD/MM/YYYY"
         )
