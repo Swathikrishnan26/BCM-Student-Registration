@@ -1,12 +1,22 @@
 import streamlit as st
 from datetime import date
-
+import gspread
 st.set_page_config(
     page_title="B.C.M. College Kottayam (Autonomous) Registration Portal",
     page_icon="🎓",
     layout="wide"
 )
+# ---------- GOOGLE SHEETS CONNECTION ----------
 
+credentials = dict(st.secrets["gcp_service_account"])
+
+credentials["private_key"] = credentials["private_key"].replace("\\n", "\n")
+
+gc = gspread.service_account_from_dict(credentials)
+
+spreadsheet = gc.open("BCM Student Registrations")
+
+worksheet = spreadsheet.sheet1
 st.markdown("""
 <style>
 
@@ -430,12 +440,44 @@ with st.container(border=True):
             for error in errors:
                 st.write("•", error)
 
-        else:
+       else:
 
-            st.success("All required details have been entered correctly!")
+    if program_level == "UG":
+        board = sslc_board
+        stream = sslc_stream
+        percentage = sslc_percentage
 
-            st.info(
-                "Your application details have passed validation. "
-                "The Google Sheets, PDF and email submission features "
-                "will be connected in the next stages."
-            )
+    else:
+        board = plus_two_board
+        stream = plus_two_stream
+        percentage = plus_two_percentage
+
+    student_data = [
+        full_name,
+        dob.strftime("%d/%m/%Y"),
+        gender,
+        email,
+        contact,
+        guardian_contact,
+        address,
+        program_level,
+        preference1,
+        preference2 if preference2 != "Select Course" else "",
+        preference3 if preference3 != "Select Course" else "",
+        board,
+        stream,
+        percentage
+    ]
+
+    try:
+        worksheet.append_row(
+            student_data,
+            value_input_option="USER_ENTERED"
+        )
+
+        st.success("Registration submitted successfully!")
+        st.info("Your details have been saved to the college registration records.")
+
+    except Exception as e:
+        st.error("Unable to save your registration. Please try again.")
+        st.write(e)
