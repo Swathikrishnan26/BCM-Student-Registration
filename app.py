@@ -358,7 +358,6 @@ elif program_level == "PG":
 
 # ---------- APPLICATION SUBMISSION ----------
 
-st.markdown("## 4. Submit Application")
 
 with st.container(border=True):
 
