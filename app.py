@@ -440,7 +440,7 @@ with st.container(border=True):
             for error in errors:
                 st.write("•", error)
 
-    else:
+else:
 
     if program_level == "UG":
         board = sslc_board
