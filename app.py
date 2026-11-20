@@ -432,7 +432,7 @@ with st.container(border=True):
                 if plus_two_percentage == "Select Percentage":
                     errors.append("Please select your Plus Two percentage.")
 
-        # Display validation results
+                # Display validation results
         if errors:
 
             st.error("Please correct the following details:")
@@ -440,44 +440,44 @@ with st.container(border=True):
             for error in errors:
                 st.write("•", error)
 
-else:
+        else:
 
-    if program_level == "UG":
-        board = sslc_board
-        stream = sslc_stream
-        percentage = sslc_percentage
+            if program_level == "UG":
+                board = sslc_board
+                stream = sslc_stream
+                percentage = sslc_percentage
 
-    else:
-        board = plus_two_board
-        stream = plus_two_stream
-        percentage = plus_two_percentage
+            else:
+                board = plus_two_board
+                stream = plus_two_stream
+                percentage = plus_two_percentage
 
-    student_data = [
-        full_name,
-        dob.strftime("%d/%m/%Y"),
-        gender,
-        email,
-        contact,
-        guardian_contact,
-        address,
-        program_level,
-        preference1,
-        preference2 if preference2 != "Select Course" else "",
-        preference3 if preference3 != "Select Course" else "",
-        board,
-        stream,
-        percentage
-    ]
+            student_data = [
+                full_name,
+                dob.strftime("%d/%m/%Y"),
+                gender,
+                email,
+                contact,
+                guardian_contact,
+                address,
+                program_level,
+                preference1,
+                preference2 if preference2 != "Select Course" else "",
+                preference3 if preference3 != "Select Course" else "",
+                board,
+                stream,
+                percentage
+            ]
 
-    try:
-        worksheet.append_row(
-            student_data,
-            value_input_option="USER_ENTERED"
-        )
+            try:
+                worksheet.append_row(
+                    student_data,
+                    value_input_option="USER_ENTERED"
+                )
 
-        st.success("Registration submitted successfully!")
-        st.info("Your details have been saved to the college registration records.")
+                st.success("Registration submitted successfully!")
+                st.info("Your details have been saved to the college registration records.")
 
-    except Exception as e:
-        st.error("Unable to save your registration. Please try again.")
-        st.write(e)
+            except Exception as e:
+                st.error("Unable to save your registration. Please try again.")
+                st.write(e)
