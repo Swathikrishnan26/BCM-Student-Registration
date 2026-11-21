@@ -237,7 +237,7 @@ with st.container(border=True):
         "Date of Birth",
          value=None,
         min_value=date(1900, 1, 1),
-        max_value=date.today(),
+        max_value=date(2026,12,31),
         format="DD/MM/YYYY",
         key="dob"
         )
