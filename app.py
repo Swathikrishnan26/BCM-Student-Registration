@@ -233,14 +233,39 @@ with st.container(border=True):
         full_name = st.text_input("Full Name *")
 
     with col2:
-        dob = st.date_input(
-        "Date of Birth",
-         value=None,
-        min_value=date(1900, 1, 1),
-        max_value=date(2026,12,31),
-        format="DD/MM/YYYY",
-        key="dob"
-        )
+        import streamlit as st
+from datetime import date
+
+st.subheader("Personal Information")
+
+years = list(range(2026, 1979, -1))
+
+selected_year = st.selectbox(
+    "Year of Birth",
+    years,
+    index=None,
+    placeholder="Select year"
+)
+
+if selected_year is not None:
+    selected_month = st.selectbox(
+        "Month of Birth",
+        list(range(1, 13)),
+        format_func=lambda x: date(2000, x, 1).strftime("%B")
+    )
+
+    import calendar
+
+    days = calendar.monthrange(selected_year, selected_month)[1]
+
+    selected_day = st.selectbox(
+        "Day of Birth",
+        list(range(1, days + 1))
+    )
+
+    dob = date(selected_year, selected_month, selected_day)
+
+    st.write("Selected Date of Birth:", dob.strftime("%d/%m/%Y"))
 
     col1, col2 = st.columns(2)
 
