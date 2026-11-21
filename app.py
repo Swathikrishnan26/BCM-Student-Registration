@@ -234,11 +234,12 @@ with st.container(border=True):
 
     with col2:
         dob = st.date_input(
-            "Date of Birth *",
-            value=None,
-            min_value=date(1980, 1, 1),
-            max_value=date.today(),
-            format="DD/MM/YYYY"
+        "Date of Birth",
+         value=None,
+        min_value=date(1900, 1, 1),
+        max_value=date.today(),
+        format="DD/MM/YYYY",
+        key="dob"
         )
 
     col1, col2 = st.columns(2)
