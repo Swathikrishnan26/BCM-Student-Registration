@@ -181,90 +181,61 @@ hr {
 
 # ---------- NEW COLLEGE HEADER ----------
 
-import base64
-
-with open("bcm_logo.png", "rb") as logo_file:
-    logo_base64 = base64.b64encode(logo_file.read()).decode()
-
 st.markdown("""
 <style>
-
 .college-header {
-    background: linear-gradient(120deg, #83A9C3, #A9C6D9);
+    background: linear-gradient(120deg, #102b43, #34566f);
     border-radius: 8px;
-    padding: 25px 35px;
+    padding: 22px 25px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 30px;
-    min-height: 150px;
+    gap: 25px;
+    min-height: 125px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .college-logo {
-    width: 125px;
-    height: 125px;
+    width: 120px;
+    height: auto;
     object-fit: contain;
     flex-shrink: 0;
 }
 
 .header-text {
-    flex: 1;
-    text-align: left;
+    color: white;
 }
 
 .header-text h2 {
     color: white !important;
-    font-size: 30px !important;
-    font-weight: 700;
-    margin: 0 !important;
+    font-size: 27px;
+    margin: 0;
     letter-spacing: 1px;
 }
 
 .header-text p {
-    color: white;
-    font-size: 15px;
-    margin-top: 10px;
+    color: #e2eaf0;
+    font-size: 13px;
+    margin: 8px 0 0 0;
 }
 
 @media (max-width: 600px) {
     .college-header {
         padding: 15px;
-        gap: 15px;
+        gap: 12px;
     }
 
     .college-logo {
-        width: 85px;
-        height: 85px;
+        width: 110px;
     }
 
     .header-text h2 {
-        font-size: 19px !important;
-    }
-
-    .header-text p {
-        font-size: 11px;
+        font-size: 19px;
     }
 }
-
 </style>
 """, unsafe_allow_html=True)
-
-st.markdown(f"""
-<div class="college-header">
-
-    <img src="data:image/png;base64,{logo_base64}"
-         class="college-logo">
-
-    <div class="header-text">
-        <h2>ONLINE REGISTRATION FORM</h2>
-        <p>B. C. M. College, Kottayam (Autonomous)</p>
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
-
+    l
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
