@@ -22,7 +22,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-        background-color: #F0F5EF !important;
+        background-color: #F7F4FC !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -43,8 +43,7 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-    h1, h2, h3 {
-    color: #214E34 !important;
+        color: #493B67 !important;
 }
 
 h2 {
@@ -133,7 +132,7 @@ div[data-testid="stHorizontalBlock"] {
     gap: 20px;
 }
 
-/* ---------- Peacock Blue THEME OVERRIDE ---------- */
+/* ---------light lavender THEME OVERRIDE ---------- */
 
 /* Main page background */
 .stApp,
@@ -188,7 +187,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-      background-color: #214E34 !important;
+    background: linear-gradient(120deg, #75619A, #A18BC9);
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
