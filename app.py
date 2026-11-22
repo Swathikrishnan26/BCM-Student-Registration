@@ -129,24 +129,57 @@ div[data-testid="stHorizontalBlock"] {
 
 # ---------- CENTERED COLLEGE HEADER ----------
 
-col1, col2, col3 = st.columns([1, 1, 1])
+
+# ---------- COLLEGE HEADER WITH LEFT-SIDE LOGO ----------
+
+col1, col2 = st.columns([1, 5], vertical_alignment="center")
+
+with col1:
+    st.image("bcm_logo.png", width=110)
 
 with col2:
-    st.image("bcm_logo.png", width=260)
+    st.markdown("""
+    <div style="
+        background: linear-gradient(120deg, #102b43, #34566f);
+        padding: 22px 25px;
+        border-radius: 8px;
+        color: white;
+        min-height: 105px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    ">
+        <h2 style="
+            color: white !important;
+            font-size: 27px;
+            margin: 0;
+            letter-spacing: 1px;
+        ">
+            ONLINE REGISTRATION FORM
+        </h2>
+        <p style="
+            color: #e2eaf0;
+            font-size: 13px;
+            margin: 8px 0 0 0;
+        ">
+            B. C. M. College, Kottayam (Autonomous)
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("""
-<div style="text-align:center; margin-top:-10px; margin-bottom:20px;">
+<div style="text-align:center; margin-top:20px; margin-bottom:10px;">
     <h2 style="color:#17365d; font-size:25px; margin:0;">
-        STUDENT REGISTRATION PORTAL
+        Online Registration Form
     </h2>
+    <p style="color:#64748b; font-size:13px;">
+        Please fill out the form to register your application.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
 st.divider()
 
-st.subheader("Student Registration")
-st.caption("Please enter your details carefully.")
-st.divider()
 
 # ---------- UG COURSES ----------
 
