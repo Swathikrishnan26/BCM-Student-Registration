@@ -277,7 +277,7 @@ st.markdown("""
 ">
     Please fill out the form to register your application.
 </p>
-""", unsafe_allow_html=True
+""", unsafe_allow_html=True)
 
 # ---------- UG COURSES ----------
 
