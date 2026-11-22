@@ -128,6 +128,8 @@ div[data-testid="stHorizontalBlock"] {
 """, unsafe_allow_html=True)
 
 
+# ---------- COLLEGE HEADER WITH FULL BLUE BACKGROUND -----
+
 # ---------- COLLEGE HEADER WITH FULL BLUE BACKGROUND ----------
 
 st.markdown("""
@@ -175,7 +177,46 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 75
+        width: 75px;
+    }
+
+    .header-text h2 {
+        font-size: 19px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
+import base64
+
+with open("bcm_logo.png", "rb") as logo_file:
+    logo_base64 = base64.b64encode(logo_file.read()).decode()
+
+st.markdown(f"""
+<div class="college-header">
+    <img src="data:image/png;base64,{logo_base64}"
+         class="college-logo">
+    <div class="header-text">
+        <h2>ONLINE REGISTRATION FORM</h2>
+        <p>B. C. M. College, Kottayam (Autonomous)</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="text-align:center; margin-top:20px; margin-bottom:10px;">
+    <h2 style="color:#17365d; font-size:25px; margin:0;">
+        Online Registration Form
+    </h2>
+    <p style="color:#64748b; font-size:13px;">
+        Please fill out the form to register your application.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
+
+
     
 
 
