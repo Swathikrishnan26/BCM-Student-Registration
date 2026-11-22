@@ -127,45 +127,79 @@ div[data-testid="stHorizontalBlock"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- CENTERED COLLEGE HEADER ----------
 
+# ---------- COLLEGE HEADER WITH FULL BLUE BACKGROUND ----------
 
-# ---------- COLLEGE HEADER WITH LEFT-SIDE LOGO ----------
+st.markdown("""
+<style>
+.college-header {
+    background: linear-gradient(120deg, #102b43, #34566f);
+    border-radius: 8px;
+    padding: 22px 25px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-height: 125px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-col1, col2 = st.columns([1, 5], vertical_alignment="center")
+.college-logo {
+    width: 105px;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 
-with col1:
-    st.image("bcm_logo.png", width=110)
+.header-text {
+    color: white;
+}
 
-with col2:
-    st.markdown("""
-    <div style="
-        background: linear-gradient(120deg, #102b43, #34566f);
-        padding: 22px 25px;
-        border-radius: 8px;
-        color: white;
-        min-height: 105px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    ">
-        <h2 style="
-            color: white !important;
-            font-size: 27px;
-            margin: 0;
-            letter-spacing: 1px;
-        ">
-            ONLINE REGISTRATION FORM
-        </h2>
-        <p style="
-            color: #e2eaf0;
-            font-size: 13px;
-            margin: 8px 0 0 0;
-        ">
-            B. C. M. College, Kottayam (Autonomous)
-        </p>
+.header-text h2 {
+    color: white !important;
+    font-size: 27px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.header-text p {
+    color: #e2eaf0;
+    font-size: 13px;
+    margin: 8px 0 0 0;
+}
+
+@media (max-width: 600px) {
+    .college-header {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .college-logo {
+        width: 75px;
+    }
+
+    .header-text h2 {
+        font-size: 19px;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
+import base64
+
+with open("bcm_logo.png", "rb") as logo_file:
+    logo_base64 = base64.b64encode(logo_file.read()).decode()
+
+st.markdown(f"""
+<div class="college-header">
+    <img src="data:image/png;base64,{logo_base64}"
+         class="college-logo">
+    <div class="header-text">
+        <h2>ONLINE REGISTRATION FORM</h2>
+        <p>B. C. M. College, Kottayam (Autonomous)</p>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <div style="text-align:center; margin-top:20px; margin-bottom:10px;">
@@ -179,6 +213,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.divider()
+
+    
 
 
 # ---------- UG COURSES ----------
