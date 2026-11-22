@@ -22,7 +22,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-    background: #F7F6FA;
+        background-color: #F0F5EF !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -43,8 +43,8 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-    color: #17365d !important;
-    font-weight: 700;
+    h1, h2, h3 {
+    color: #214E34 !important;
 }
 
 h2 {
