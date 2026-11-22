@@ -235,7 +235,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-    l
+    
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
