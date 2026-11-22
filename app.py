@@ -187,7 +187,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #102b43, #34566f);
+    background: linear-gradient(120deg, #39334F, #514968) !important;
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
