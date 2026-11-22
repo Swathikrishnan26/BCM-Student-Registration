@@ -137,13 +137,14 @@ div[data-testid="stHorizontalBlock"] {
 /* Main page background */
 .stApp,
 [data-testid="stAppViewContainer"] {
-    background: #F4F8FA !important;
+        background-color: #EFF7F6 !important;
+}
 }
 
 /* Main headings */
 h1, h2, h3 {
-    color: #39334F !important;
-    font-weight: 700;
+        color: #3D6663 !important;
+
 }
 
 /* Form containers */
@@ -187,7 +188,8 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #75619A, #A18BC9);
+        background-color: #EFF7F6 !important;
+}
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
