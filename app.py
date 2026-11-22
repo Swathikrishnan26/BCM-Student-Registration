@@ -241,32 +241,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- BCM COLLEGE LOGO AND HEADER ----------
 
-logo_path = Path(__file__).parent / "bcm_logo.png"
 
-if logo_path.exists():
-    with open(logo_path, "rb") as logo_file:
-        logo_base64 = base64.b64encode(
-            logo_file.read()
-        ).decode()
-
-    logo_html = f'''
-        <img src="data:image/png;base64,{logo_base64}"
-             class="college-logo">
-    '''
-else:
-    logo_html = ""
-
-st.markdown(f"""
-<div class="college-header">
-    {logo_html}
-    <div class="header-text">
-        <h2>ONLINE REGISTRATION FORM</h2>
-        <p>B. C. M. College, Kottayam (Autonomous)</p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
 
 import base64
 
