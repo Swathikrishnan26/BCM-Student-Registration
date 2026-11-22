@@ -133,17 +133,18 @@ div[data-testid="stHorizontalBlock"] {
     gap: 20px;
 }
 
-/* ---------- MIDNIGHT PURPLE THEME OVERRIDE ---------- */
+/* ---------- Peacock Blue THEME OVERRIDE ---------- */
 
 /* Main page background */
 .stApp,
 [data-testid="stAppViewContainer"] {
-    background: #F7F6FA !important;
+    background: #F4F8FA !important;
 }
 
 /* Main headings */
 h1, h2, h3 {
     color: #39334F !important;
+    font-weight: 700;
 }
 
 /* Form containers */
@@ -187,7 +188,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #39334F, #514968) !important;
+    background: linear-gradient(120deg, #176B87, #2585A0);
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
