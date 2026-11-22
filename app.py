@@ -143,8 +143,7 @@ div[data-testid="stHorizontalBlock"] {
 
 /* Main headings */
 h1, h2, h3 {
-        color: #3D6663 !important;
-
+            color: #36556D !important;
 }
 
 /* Form containers */
@@ -188,7 +187,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-        background-color: #EFF7F6 !important;
+        background: linear-gradient(120deg, #83A9C3, #A9C6D9);
 }
     border-radius: 8px;
     padding: 22px 25px;
