@@ -30,6 +30,16 @@ st.markdown("""
  padding-top: 2rem; 
  padding-bottom: 3rem; 
  }
+ /* Reduce space around registration instruction */
+div[data-testid="stMarkdown"] p {
+    margin-bottom: 2px !important;
+}
+
+/* Reduce space before Personal Information */
+h2 {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+}
 
 /* ---------- HEADINGS ---------- */
 
