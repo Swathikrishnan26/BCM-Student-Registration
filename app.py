@@ -215,13 +215,11 @@ st.markdown(f"""
 
 # ---------- REGISTRATION INSTRUCTION ----------
 
-
-
 st.markdown("""
 <p style="
     color: #64748b;
     font-size: 14px;
-    margin: 0;
+    margin: 8px 0 0 0;
     padding: 0;
     line-height: 1.3;
 ">
@@ -229,16 +227,6 @@ st.markdown("""
 </p>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-/* Reduce space after the instruction */
-div[data-testid="stMarkdown"]:has(p) {
-    margin-bottom: -18px !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-st.divider()
 
 # ---------- UG COURSES ----------
 
