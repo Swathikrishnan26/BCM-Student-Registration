@@ -268,7 +268,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-    import base64
+import base64
 
 with open("bcm_logo.png", "rb") as logo_file:
     logo_base64 = base64.b64encode(logo_file.read()).decode()
