@@ -133,6 +133,49 @@ div[data-testid="stHorizontalBlock"] {
     gap: 20px;
 }
 
+/* ---------- MIDNIGHT PURPLE THEME OVERRIDE ---------- */
+
+/* Main page background */
+.stApp,
+[data-testid="stAppViewContainer"] {
+    background: #F7F6FA !important;
+}
+
+/* Main headings */
+h1, h2, h3 {
+    color: #39334F !important;
+}
+
+/* Form containers */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #FFFFFF !important;
+    border-color: #DDD9E5 !important;
+    box-shadow: 0 3px 12px rgba(57, 51, 79, 0.06) !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: #39334F !important;
+    color: #FFFFFF !important;
+}
+
+.stButton > button:hover {
+    background-color: #514968 !important;
+    color: #FFFFFF !important;
+}
+
+/* Input borders */
+div[data-testid="stTextInput"] input,
+div[data-testid="stDateInput"] input,
+div[data-testid="stTextArea"] textarea {
+    border-color: #C9C3D5 !important;
+}
+
+/* Dividers */
+hr {
+    border-color: #DDD9E5 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
