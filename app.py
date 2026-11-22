@@ -206,7 +206,7 @@ st.markdown(f"""
 st.markdown("""
     </h2>
     <p style="color:#64748b; font-size:13px;">
-        Please fill out the form to register your application.
+        Please fill out the form to register your application carefully.
     </p>
 </div>
 """, unsafe_allow_html=True)
