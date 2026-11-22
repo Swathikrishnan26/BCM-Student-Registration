@@ -21,9 +21,8 @@ st.markdown("""
 <style>
 
 /* ---------- MAIN PAGE ---------- */
-
 .stApp {
-    background: #f3f6fb;
+    background: #F7F6FA;
 }
 .block-container {
  max-width: 1150px; 
