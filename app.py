@@ -203,13 +203,22 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# ---------- REGISTRATION INSTRUCTION ----------
+
 st.markdown("""
-    </h2>
-    <p style="color:#64748b; font-size:13px;">
-        Please fill out the form to register your application carefully.
-    </p>
+<div style="
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 15px;
+    color: #64748b;
+    font-size: 14px;
+">
+    Please fill out the form to register your application carefully.
 </div>
 """, unsafe_allow_html=True)
+
+st.divider()
+
 
 st.divider()
 
