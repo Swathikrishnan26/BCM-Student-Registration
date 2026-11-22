@@ -216,28 +216,29 @@ st.markdown(f"""
 # ---------- REGISTRATION INSTRUCTION ----------
 
 
+
 st.markdown("""
-<div style="
-    text-align: left;
-    margin-top: 5px;
-    margin-bottom: 2px;
-    padding: 0;
+<p style="
     color: #64748b;
     font-size: 14px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
 ">
     Please fill out the form to register your application.
-</div>
+</p>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+/* Reduce space after the instruction */
+div[data-testid="stMarkdown"]:has(p) {
+    margin-bottom: -18px !important;
+}
+</style>
 """, unsafe_allow_html=True)
 
 st.divider()
-
-
-
-st.divider()
-
-
-    
-
 
 # ---------- UG COURSES ----------
 
