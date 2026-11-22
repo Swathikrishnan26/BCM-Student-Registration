@@ -177,7 +177,7 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 75px;
+        width: 100px;
     }
 
     .header-text h2 {
