@@ -268,7 +268,21 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-    
+    import base64
+
+with open("bcm_logo.png", "rb") as logo_file:
+    logo_base64 = base64.b64encode(logo_file.read()).decode()
+
+st.markdown(f"""
+<div class="college-header">
+    <img src="data:image/png;base64,{logo_base64}"
+         class="college-logo">
+    <div class="header-text">
+        <h2>ONLINE REGISTRATION FORM</h2>
+        <p>B. C. M. College, Kottayam (Autonomous)</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
