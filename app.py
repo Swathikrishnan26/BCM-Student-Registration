@@ -177,7 +177,7 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 100px;
+        width: 110px;
     }
 
     .header-text h2 {
@@ -204,9 +204,6 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div style="text-align:center; margin-top:20px; margin-bottom:10px;">
-    <h2 style="color:#17365d; font-size:25px; margin:0;">
-        Online Registration Form
     </h2>
     <p style="color:#64748b; font-size:13px;">
         Please fill out the form to register your application.
