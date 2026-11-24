@@ -294,7 +294,7 @@ st.markdown(f"""
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
-<p style="
+    <p style="
     color: #64748b;
     font-size: 14px;
     margin: 8px 0 0 0;
@@ -304,7 +304,6 @@ st.markdown("""
     Please fill out the form to register your application.
 </p>
 """, unsafe_allow_html=True)
-
 # ---------- UG COURSES ----------
 
 UG_COURSES = [
