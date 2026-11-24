@@ -478,18 +478,18 @@ elif program_level == "PG":
             )
 
        with col2:
-    plus_two_stream = st.selectbox(
-        "Stream of Study *",
-        [
-            "Select Stream",
-            "Science",
-            "Commerce",
-            "Humanities",
-            "Vocational (VHSE)",
-            "Technical",
-            "Other"
-        ]
-    )
+            plus_two_stream = st.selectbox(
+                "Stream of Study *",
+                [
+                    "Select Stream",
+                    "Science",
+                    "Commerce",
+                    "Humanities",
+                    "Vocational (VHSE)",
+                    "Technical",
+                    "Other"
+                ]
+          )
 
         plus_two_percentage = st.selectbox(
             "Percentage Obtained in 12 th*",
