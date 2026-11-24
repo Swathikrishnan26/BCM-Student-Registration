@@ -258,15 +258,39 @@ with open("bcm_logo.png", "rb") as logo_file:
     logo_base64 = base64.b64encode(logo_file.read()).decode()
 
 st.markdown(f"""
-<div class="college-header">
-    <img src="data:image/png;base64,{logo_base64}"
-         class="college-logo">
-    <div class="header-text">
-        <h2>ONLINE REGISTRATION FORM</h2>
-        <p>B. C. M. College, Kottayam (Autonomous)</p>
+<div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 110px;
+">
+
+    <img src="YOUR_LOGO_PATH"
+         style="
+         position: absolute;
+         left: 25px;
+         width: 110px;
+         ">
+
+    <div style="text-align: center;">
+
+        <h2 style="
+            color: white;
+            margin-bottom: 20px;
+        ">
+            ONLINE REGISTRATION FORM
+        </h2>
+
+        <p style="
+            color: white;
+            margin: 0;
+        ">
+            B. C. M. College, Kottayam (Autonomous)
+        </p>
+
     </div>
 </div>
-""", unsafe_allow_html=True)
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
