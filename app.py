@@ -311,9 +311,7 @@ SSLC_BOARDS = [
     "CBSE",
     "CISCE",
     "NIOS",
-    "MSBSHSE",
     "TNDGE",
-    "KSEEB",
     "Kerala Board of School Education",
     "Other"
 ]
@@ -325,9 +323,7 @@ PLUS_TWO_BOARDS = [
     "CBSE",
     "CISCE",
     "NIOS",
-    "DHSE",
-    "Government of Kerala",
-    "MSBSHSE",
+    "DHSE KERALA",
     "Board of Higher Secondary",
     "Tamil Nadu",
     "Other"
@@ -461,7 +457,7 @@ if program_level == "UG":
             )
 
         sslc_percentage = st.selectbox(
-            "Percentage Obtained *",
+            "Percentage Obtained in 10 th *",
             ["Select Percentage"] + PERCENTAGE_RANGES
         )
 
@@ -487,7 +483,7 @@ elif program_level == "PG":
            )
 
         plus_two_percentage = st.selectbox(
-            "Percentage Obtained *",
+            "Percentage Obtained in 12 th*",
             ["Select Percentage"] + PERCENTAGE_RANGES
         )
 
