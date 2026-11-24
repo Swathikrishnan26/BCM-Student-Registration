@@ -440,7 +440,7 @@ if program_level == "UG":
 
         with col2:
             sslc_stream = st.selectbox(
-                "Stream of Study *",
+                "Current Stream of Study *",
                 [
                     "Select Stream",
                     "Science",
@@ -473,7 +473,7 @@ elif program_level == "PG":
 
         with col2:
              plus_two_stream = st.text_input(
-                "Stream of Study *",
+                "Current Stream of Study *",
                 placeholder="Enter your stream of study"
             )
         plus_two_percentage = st.selectbox(
