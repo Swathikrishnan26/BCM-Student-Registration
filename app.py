@@ -27,7 +27,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-    background-color: #F5F8FC;
+      background-color: #F7F3EB !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -149,7 +149,7 @@ div[data-testid="stHorizontalBlock"] {
 
 /* Main headings */
 h1, h2, h3 {
-            color: #173D70;
+             color: #30343B !important;
 
 }
 
@@ -191,7 +191,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #E8F2FC, #D4E6F7);
+    background: linear-gradient(120deg, #30343B, #51545A);
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
@@ -210,7 +210,13 @@ st.markdown("""
 }
 
 .header-text {
-    color: white;
+    .header-text h1 {
+    color: #173D70 !important;
+}
+
+.header-text p {
+    color: #354D68 !important;
+}
 }
 
 .header-text h2 {
