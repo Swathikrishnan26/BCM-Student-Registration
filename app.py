@@ -239,7 +239,7 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 110px;
+        width: 130px;
     }
 
     .header-text h2 {
