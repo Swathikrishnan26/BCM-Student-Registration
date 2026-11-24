@@ -424,7 +424,6 @@ with st.container(border=True):
 # ---------- ACADEMIC QUALIFICATION ----------
 
 st.markdown("## 3. Academic Qualification")
-
 if program_level == "UG":
 
     with st.container(border=True):
@@ -436,23 +435,27 @@ if program_level == "UG":
         with col1:
             sslc_board = st.selectbox(
                 "Board of Examination *",
-                ["Select Board"] + SSLC_BOARDS,
-                key="sslc_board"
+                ["Select Board"] + SSLC_BOARDS
             )
 
         with col2:
-            sslc_stream = st.text_input(
-                "Current Stream of Study *",
-                placeholder="Enter your current stream of study",
-                key="sslc_stream"
+            sslc_stream = st.selectbox(
+                "Stream of Study *",
+                [
+                    "Select Stream",
+                    "Science",
+                    "Commerce",
+                    "Humanities",
+                    "Vocational (VHSE)",
+                    "Technical",
+                    "Other"
+                ]
             )
 
         sslc_percentage = st.selectbox(
             "Percentage Obtained in 10 th *",
-            ["Select Percentage"] + PERCENTAGE_RANGES,
-            key="sslc_percentage"
+            ["Select Percentage"] + PERCENTAGE_RANGES
         )
-
 elif program_level == "PG":
 
     with st.container(border=True):
