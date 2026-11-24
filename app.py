@@ -1,54 +1,77 @@
-import streamlit as st
-from datetime import date
-import gspread
+
 import streamlit as st
 from datetime import date
 import gspread
 import base64
-from pathlib import Path
+
 st.set_page_config(
     page_title="B.C.M. College Kottayam (Autonomous) Registration Portal",
     page_icon="🎓",
     layout="wide"
 )
+
+# ---------- CLEAR FORM AFTER SUCCESSFUL REGISTRATION ----------
+
+if st.session_state.pop("_clear_registration_form", False):
+
+    reset_values = {
+        "full_name": "",
+        "dob": None,
+        "gender": "Select Gender",
+        "email": "",
+        "contact": "",
+        "guardian_contact": "",
+        "address": "",
+        "program_level": "Select Program",
+        "preference1": "Select Course",
+        "preference2": "Select Course",
+        "preference3": "Select Course",
+        "sslc_board": "Select Board",
+        "sslc_stream": "",
+        "sslc_percentage": "Select Percentage",
+        "plus_two_board": "Select Board",
+        "plus_two_stream": "Select Stream",
+        "plus_two_percentage": "Select Percentage"
+    }
+
+    for key, value in reset_values.items():
+        st.session_state[key] = value
+
+registration_success = st.session_state.pop(
+    "_registration_success", False
+)
+
 # ---------- GOOGLE SHEETS CONNECTION ----------
 
 credentials = dict(st.secrets["gcp_service_account"])
-
 credentials["private_key"] = credentials["private_key"].replace("\\n", "\n")
 
 gc = gspread.service_account_from_dict(credentials)
 
 spreadsheet = gc.open("BCM Student Registrations")
-
 worksheet = spreadsheet.sheet1
+
+# ---------- PAGE DESIGN ----------
+
 st.markdown("""
 <style>
 
-/* ---------- MAIN PAGE ---------- */
-.stApp {
-        background-color: #F7F4FC !important;
+/* Main page */
+.stApp,
+[data-testid="stAppViewContainer"] {
+    background-color: #EFF7F6 !important;
+    color-scheme: light !important;
 }
+
 .block-container {
- max-width: 1150px; 
- padding-top: 2rem; 
- padding-bottom: 3rem; 
- }
- /* Reduce space around registration instruction */
-div[data-testid="stMarkdown"] p {
-    margin-bottom: 2px !important;
+    max-width: 1150px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
 }
 
-/* Reduce space before Personal Information */
-h2 {
-    margin-top: 5px !important;
-    margin-bottom: 10px !important;
-}
-
-/* ---------- HEADINGS ---------- */
-
+/* Headings */
 h1, h2, h3 {
-        color: #493B67 !important;
+    color: #36556D !important;
 }
 
 h2 {
@@ -61,107 +84,50 @@ h3 {
     font-size: 19px !important;
 }
 
-/* ---------- SECTION BORDERS ---------- */
-
+/* Form containers */
 div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #ffffff;
-    border: 1px solid #d5dfec;
+    background-color: #FFFFFF !important;
+    border: 1px solid #DDD9E5 !important;
     border-radius: 14px;
     padding: 22px;
-    box-shadow: 0 3px 12px rgba(23, 54, 93, 0.06);
+    box-shadow: 0 3px 12px rgba(57, 51, 79, 0.06);
 }
 
-/* ---------- INPUT BOXES ---------- */
-
+/* Input boxes */
 div[data-testid="stTextInput"] input,
 div[data-testid="stDateInput"] input,
 div[data-testid="stTextArea"] textarea {
-    background-color: #ffffff;
-    border: 1px solid #bdcbdc;
+    background-color: #FFFFFF !important;
+    color: #24364b !important;
+    border: 1px solid #C9C3D5 !important;
     border-radius: 8px;
-    color: #24364b;
     min-height: 42px;
 }
 
 div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-    background-color: #ffffff;
-    border: 1px solid #bdcbdc;
+    background-color: #FFFFFF !important;
+    color: #24364b !important;
+    border: 1px solid #C9C3D5 !important;
     border-radius: 8px;
     min-height: 42px;
 }
 
-/* ---------- LABELS ---------- */
-
+/* Labels */
 div[data-testid="stWidgetLabel"] p {
-    color: #294563;
+    color: #294563 !important;
     font-weight: 600;
     font-size: 14px;
-}
-
-/* ---------- BUTTONS ---------- */
-
-.stButton > button {
-    background-color: #174b78;
-    color: white;
-    border: none;
-    border-radius: 9px;
-    height: 48px;
-    font-weight: 700;
-    font-size: 16px;
-    transition: 0.2s ease;
-}
-
-.stButton > button:hover {
-    background-color: #0e3457;
-    color: white;
-    border: none;
-}
-
-/* ---------- DIVIDERS ---------- */
-
-hr {
-    border-color: #d5dfec;
-    margin-top: 22px;
-    margin-bottom: 22px;
-}
-
-/* ---------- INFORMATION MESSAGES ---------- */
-
-div[data-testid="stAlert"] {
-    border-radius: 9px;
-}
-
-/* ---------- RESPONSIVE SPACING ---------- */
-
-div[data-testid="stHorizontalBlock"] {
-    gap: 20px;
-}
-
-/* ---------light lavender THEME OVERRIDE ---------- */
-
-/* Main page background */
-.stApp,
-[data-testid="stAppViewContainer"] {
-        background-color: #EFF7F6 !important;
-}
-}
-
-/* Main headings */
-h1, h2, h3 {
-            color: #36556D !important;
-}
-
-/* Form containers */
-div[data-testid="stVerticalBlockBorderWrapper"] {
-    background-color: #FFFFFF !important;
-    border-color: #DDD9E5 !important;
-    box-shadow: 0 3px 12px rgba(57, 51, 79, 0.06) !important;
 }
 
 /* Buttons */
 .stButton > button {
     background-color: #39334F !important;
     color: #FFFFFF !important;
+    border: none;
+    border-radius: 9px;
+    height: 48px;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 .stButton > button:hover {
@@ -169,25 +135,31 @@ div[data-testid="stVerticalBlockBorderWrapper"] {
     color: #FFFFFF !important;
 }
 
-/* Input borders */
-div[data-testid="stTextInput"] input,
-div[data-testid="stDateInput"] input,
-div[data-testid="stTextArea"] textarea {
-    border-color: #C9C3D5 !important;
-}
-
 /* Dividers */
 hr {
     border-color: #DDD9E5 !important;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+/* Information messages */
+div[data-testid="stAlert"] {
+    border-radius: 9px;
+}
+
+/* Spacing */
+div[data-testid="stHorizontalBlock"] {
+    gap: 20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- NEW COLLEGE HEADER ----------
+# ---------- COLLEGE HEADER ----------
 
 st.markdown("""
 <style>
+
 .college-header {
     background: linear-gradient(120deg, #F1EAF8, #E4D8F0);
     border: 1px solid #D5C5E5;
@@ -226,6 +198,7 @@ st.markdown("""
 }
 
 @media (max-width: 600px) {
+
     .college-header {
         padding: 15px;
         gap: 12px;
@@ -239,13 +212,9 @@ st.markdown("""
         font-size: 19px;
     }
 }
+
 </style>
 """, unsafe_allow_html=True)
-
-
-
-
-import base64
 
 with open("bcm_logo.png", "rb") as logo_file:
     logo_base64 = base64.b64encode(logo_file.read()).decode()
@@ -260,6 +229,7 @@ st.markdown(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
@@ -273,6 +243,10 @@ st.markdown("""
     Please fill out the form to register your application.
 </p>
 """, unsafe_allow_html=True)
+
+if registration_success:
+    st.success("Registration submitted successfully!")
+    st.info("Your details have been saved to the college registration records. The form is ready for the next student.")
 
 # ---------- UG COURSES ----------
 
@@ -293,7 +267,6 @@ UG_COURSES = [
     "B.Com. (Hons)"
 ]
 
-
 # ---------- PG COURSES ----------
 
 PG_COURSES = [
@@ -304,7 +277,6 @@ PG_COURSES = [
     "M.Com. (SF)",
     "Master of Social Work (SF)"
 ]
-
 
 # ---------- CLASS 10 BOARD OPTIONS ----------
 
@@ -317,7 +289,6 @@ SSLC_BOARDS = [
     "Other"
 ]
 
-
 # ---------- CLASS 12 BOARD OPTIONS ----------
 
 PLUS_TWO_BOARDS = [
@@ -329,7 +300,6 @@ PLUS_TWO_BOARDS = [
     "Tamil Nadu",
     "Other"
 ]
-
 
 # ---------- PERCENTAGE OPTIONS ----------
 
@@ -352,39 +322,54 @@ with st.container(border=True):
     col1, col2 = st.columns(2)
 
     with col1:
-        full_name = st.text_input("Full Name *")
+        full_name = st.text_input(
+            "Full Name *",
+            key="full_name"
+        )
 
     with col2:
-       dob = st.date_input(
-      "Date of Birth",
-       value=None,
-       min_value=date(1980, 1, 1),
-       max_value=date(2026, 12, 31),
-      format="DD/MM/YYYY"
-      )
+        dob = st.date_input(
+            "Date of Birth",
+            value=None,
+            min_value=date(1980, 1, 1),
+            max_value=date(2026, 12, 31),
+            format="DD/MM/YYYY",
+            key="dob"
+        )
 
     col1, col2 = st.columns(2)
 
     with col1:
         gender = st.selectbox(
             "Gender *",
-            ["Select Gender", "FEMALE", "MALE", "OTHER GENDER"]
+            ["Select Gender", "FEMALE", "MALE", "OTHER GENDER"],
+            key="gender"
         )
 
     with col2:
-        email = st.text_input("Email Address *")
+        email = st.text_input(
+            "Email Address *",
+            key="email"
+        )
 
     col1, col2 = st.columns(2)
 
     with col1:
-        contact = st.text_input("Contact / WhatsApp Number *")
+        contact = st.text_input(
+            "Contact / WhatsApp Number *",
+            key="contact"
+        )
 
     with col2:
         guardian_contact = st.text_input(
-            "Guardian's Contact Number *"
+            "Guardian's Contact Number *",
+            key="guardian_contact"
         )
 
-    address = st.text_area("Address *")
+    address = st.text_area(
+        "Address *",
+        key="address"
+    )
 
 # ---------- COURSE DETAILS ----------
 
@@ -394,7 +379,8 @@ with st.container(border=True):
 
     program_level = st.selectbox(
         "Program Level *",
-        ["Select Program", "UG", "PG"]
+        ["Select Program", "UG", "PG"],
+        key="program_level"
     )
 
     st.markdown("### Course Applied For")
@@ -419,18 +405,21 @@ with st.container(border=True):
         with col1:
             preference1 = st.selectbox(
                 "Preference 1 *",
-                ["Select Course"] + available_courses
+                ["Select Course"] + available_courses,
+                key="preference1"
             )
 
         with col2:
             preference2 = st.selectbox(
                 "Preference 2",
-                ["Select Course"] + available_courses
+                ["Select Course"] + available_courses,
+                key="preference2"
             )
 
         preference3 = st.selectbox(
             "Preference 3",
-            ["Select Course"] + available_courses
+            ["Select Course"] + available_courses,
+            key="preference3"
         )
 
 # ---------- ACADEMIC QUALIFICATION ----------
@@ -448,33 +437,36 @@ if program_level == "UG":
         with col1:
             sslc_board = st.selectbox(
                 "Board of Examination *",
-                ["Select Board"] + SSLC_BOARDS
+                ["Select Board"] + SSLC_BOARDS,
+                key="sslc_board"
             )
 
         with col2:
             sslc_stream = st.text_input(
-    "Current Stream of Study *",
-    placeholder="Enter your current stream of study"
+                "Current Stream of Study *",
+                placeholder="Enter your current stream of study",
+                key="sslc_stream"
             )
 
         sslc_percentage = st.selectbox(
             "Percentage Obtained in 10 th *",
-            ["Select Percentage"] + PERCENTAGE_RANGES
+            ["Select Percentage"] + PERCENTAGE_RANGES,
+            key="sslc_percentage"
         )
-
 
 elif program_level == "PG":
 
     with st.container(border=True):
 
-        st.markdown("### Class 12  Details")
+        st.markdown("### Class 12 Details")
 
         col1, col2 = st.columns(2)
 
         with col1:
             plus_two_board = st.selectbox(
                 "Board of Examination *",
-                ["Select Board"] + PLUS_TWO_BOARDS
+                ["Select Board"] + PLUS_TWO_BOARDS,
+                key="plus_two_board"
             )
 
         with col2:
@@ -488,16 +480,17 @@ elif program_level == "PG":
                     "Vocational (VHSE)",
                     "Technical",
                     "Other"
-                ]
-          )
+                ],
+                key="plus_two_stream"
+            )
 
         plus_two_percentage = st.selectbox(
             "Percentage Obtained in 12 th*",
-            ["Select Percentage"] + PERCENTAGE_RANGES
+            ["Select Percentage"] + PERCENTAGE_RANGES,
+            key="plus_two_percentage"
         )
 
 # ---------- APPLICATION SUBMISSION ----------
-
 
 with st.container(border=True):
 
@@ -508,6 +501,7 @@ with st.container(border=True):
         errors = []
 
         # Personal information validation
+
         if not full_name.strip():
             errors.append("Please enter your full name.")
 
@@ -530,10 +524,12 @@ with st.container(border=True):
             errors.append("Please enter your address.")
 
         # Course validation
+
         if program_level == "Select Program":
             errors.append("Please select UG or PG.")
 
         else:
+
             if preference1 == "Select Course":
                 errors.append("Please select your first course preference.")
 
@@ -546,6 +542,7 @@ with st.container(border=True):
                 errors.append("Please select different courses for each preference.")
 
             # Academic qualification validation
+
             if program_level == "UG":
 
                 if sslc_board == "Select Board":
@@ -562,7 +559,8 @@ with st.container(border=True):
                 if plus_two_percentage == "Select Percentage":
                     errors.append("Please select your Plus Two percentage.")
 
-                # Display validation results
+        # Display validation results
+
         if errors:
 
             st.error("Please correct the following details:")
@@ -600,14 +598,18 @@ with st.container(border=True):
             ]
 
             try:
+
                 worksheet.append_row(
                     student_data,
                     value_input_option="USER_ENTERED"
                 )
 
-                st.success("Registration submitted successfully!")
-                st.info("Your details have been saved to the college registration records.")
+                st.session_state["_registration_success"] = True
+                st.session_state["_clear_registration_form"] = True
+
+                st.rerun()
 
             except Exception as e:
+
                 st.error("Unable to save your registration. Please try again.")
                 st.write(e)
