@@ -201,13 +201,12 @@ st.markdown("""
     box-sizing: border-box;
 }
 
-.college-logo {
-    width: 120px;
+..college-logo {
+    width: 170px;
     height: auto;
     object-fit: contain;
     flex-shrink: 0;
 }
-
 .header-text {
     color: #39334F;
 }
