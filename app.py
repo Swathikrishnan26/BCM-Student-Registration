@@ -48,7 +48,7 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-        color: #493B67 !important;
+        color: #F3EAF8 !important;
 }
 
 h2 {
