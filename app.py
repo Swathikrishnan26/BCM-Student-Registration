@@ -27,7 +27,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-      background-color: #F7F3EB !important;
+        background-color: #F7F4FC !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -48,8 +48,7 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-         color: #173D70;
-
+        color: #493B67 !important;
 }
 
 h2 {
@@ -143,14 +142,13 @@ div[data-testid="stHorizontalBlock"] {
 /* Main page background */
 .stApp,
 [data-testid="stAppViewContainer"] {
-        background-color:  #F3EAF8 !important;
+        background-color: #EFF7F6 !important;
 }
 }
 
 /* Main headings */
 h1, h2, h3 {
-             color: #30343B !important;
-
+            color: #36556D !important;
 }
 
 /* Form containers */
@@ -191,7 +189,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #30343B, #51545A);
+    background: linear-gradient(120deg, #102b43, #34566f);
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
@@ -210,13 +208,7 @@ st.markdown("""
 }
 
 .header-text {
-    .header-text h1 {
-    color: #173D70 !important;
-}
-
-.header-text p {
-    color: #354D68 !important;
-}
+    color: white;
 }
 
 .header-text h2 {
@@ -239,7 +231,7 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 130px;
+        width: 110px;
     }
 
     .header-text h2 {
@@ -258,39 +250,15 @@ with open("bcm_logo.png", "rb") as logo_file:
     logo_base64 = base64.b64encode(logo_file.read()).decode()
 
 st.markdown(f"""
-<div style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-height: 110px;
-">
-
-    <img src="YOUR_LOGO_PATH"
-         style="
-         position: absolute;
-         left: 25px;
-         width: 110px;
-         ">
-
-    <div style="text-align: center;">
-
-        <h2 style="
-            color: white;
-            margin-bottom: 20px;
-        ">
-            ONLINE REGISTRATION FORM
-        </h2>
-
-        <p style="
-            color: white;
-            margin: 0;
-        ">
-            B. C. M. College, Kottayam (Autonomous)
-        </p>
-
+<div class="college-header">
+    <img src="data:image/png;base64,{logo_base64}"
+         class="college-logo">
+    <div class="header-text">
+        <h2>ONLINE REGISTRATION FORM</h2>
+        <p>B. C. M. College, Kottayam (Autonomous)</p>
     </div>
 </div>
+""", unsafe_allow_html=True)
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
@@ -304,6 +272,7 @@ st.markdown("""
     Please fill out the form to register your application.
 </p>
 """, unsafe_allow_html=True)
+
 # ---------- UG COURSES ----------
 
 UG_COURSES = [
