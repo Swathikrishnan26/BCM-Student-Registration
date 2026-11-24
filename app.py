@@ -27,7 +27,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-        background-color: #F3EAF8 !important;
+        background-color: #F2F7F3 !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -48,7 +48,7 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-        color: #F3EAF8 !important;
+         color: #405B49 !important;
 }
 
 h2 {
@@ -189,7 +189,7 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #102b43, #34566f);
+     background: linear-gradient(120deg, #91B39A, #B2CBB6);
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
