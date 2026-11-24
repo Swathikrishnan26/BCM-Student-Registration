@@ -202,7 +202,7 @@ st.markdown("""
 }
 
 .college-logo {
-    width: 150px;
+    width: 160px;
     height: auto;
     object-fit: contain;
     flex-shrink: 0;
