@@ -189,7 +189,8 @@ hr {
 st.markdown("""
 <style>
 .college-header {
-    background: linear-gradient(120deg, #102b43, #34566f);
+    background: linear-gradient(120deg, #F1EAF8, #E4D8F0);
+    border: 1px solid #D5C5E5;
     border-radius: 8px;
     padding: 22px 25px;
     display: flex;
@@ -208,18 +209,18 @@ st.markdown("""
 }
 
 .header-text {
-    color: white;
+    color: #39334F;
 }
 
 .header-text h2 {
-    color: white !important;
+    color: #39334F !important;
     font-size: 27px;
     margin: 0;
     letter-spacing: 1px;
 }
 
 .header-text p {
-    color: #e2eaf0;
+    color: #514968;
     font-size: 13px;
     margin: 8px 0 0 0;
 }
