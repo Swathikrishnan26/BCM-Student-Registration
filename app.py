@@ -27,7 +27,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-        background-color: #F7F4FC !important;
+        background-color: #F3EAF8 !important;
 }
 .block-container {
  max-width: 1150px; 
@@ -142,7 +142,7 @@ div[data-testid="stHorizontalBlock"] {
 /* Main page background */
 .stApp,
 [data-testid="stAppViewContainer"] {
-        background-color: #EFF7F6 !important;
+        background-color:  #F3EAF8 !important;
 }
 }
 
