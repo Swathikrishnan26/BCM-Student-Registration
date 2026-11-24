@@ -27,7 +27,7 @@ st.markdown("""
 
 /* ---------- MAIN PAGE ---------- */
 .stApp {
-        background-color: #F2F7F3 !important;
+    background-color: #F5F8FC;
 }
 .block-container {
  max-width: 1150px; 
@@ -48,7 +48,8 @@ h2 {
 /* ---------- HEADINGS ---------- */
 
 h1, h2, h3 {
-         color: #405B49 !important;
+         color: #173D70;
+
 }
 
 h2 {
@@ -148,7 +149,8 @@ div[data-testid="stHorizontalBlock"] {
 
 /* Main headings */
 h1, h2, h3 {
-            color: #36556D !important;
+            color: #173D70;
+
 }
 
 /* Form containers */
