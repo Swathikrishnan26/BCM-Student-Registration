@@ -472,20 +472,10 @@ elif program_level == "PG":
             )
 
         with col2:
-            plus_two_stream = st.selectbox(
+             plus_two_stream = st.text_input(
                 "Stream of Study *",
-                [
-                    "Select Stream",
-                    "Science",
-                    "Commerce",
-                    "Humanities",
-                    "Vocational (VHSE)",
-                    "Technical",
-                    "Other"
-                ],
-                key="plus_two_stream"
+                placeholder="Enter your stream of study"
             )
-
         plus_two_percentage = st.selectbox(
             "Percentage Obtained in 12 th*",
             ["Select Percentage"] + PERCENTAGE_RANGES,
