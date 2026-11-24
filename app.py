@@ -477,7 +477,7 @@ elif program_level == "PG":
                 ["Select Board"] + PLUS_TWO_BOARDS
             )
 
-       with col2:
+        with col2:
             plus_two_stream = st.selectbox(
                 "Stream of Study *",
                 [
