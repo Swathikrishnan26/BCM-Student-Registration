@@ -294,9 +294,13 @@ st.markdown(f"""
 # ---------- REGISTRATION INSTRUCTION ----------
 
 st.markdown("""
-    <p style="color: white; margin: 0;">
-            B. C. M. College, Kottayam (Autonomous)
-        
+<p style="
+    color: #64748b;
+    font-size: 14px;
+    margin: 8px 0 0 0;
+    padding: 0;
+    line-height: 1.3;
+">
     Please fill out the form to register your application.
 </p>
 """, unsafe_allow_html=True)
