@@ -232,7 +232,7 @@ st.markdown("""
     }
 
     .college-logo {
-        width: 110px;
+        width: 140px;
     }
 
     .header-text h2 {
