@@ -536,19 +536,18 @@ with st.container(border=True):
 
         errors = []
 
-    # Validate contact number
-    if not validate_phone(contact_number):
-        errors.append("Contact number must contain at least 10 digits.")
+        # Validate contact number
+        if not validate_phone(contact_number):
+            errors.append("Contact number must contain at least 10 digits.")
 
-    # Validate email
-    if not validate_email(Email-Address):
-        errors.append("Please enter a valid email address.")
+        # Validate email
+        if not validate_email(email):
+            errors.append("Please enter a valid email address.")
 
-    # Display errors or continue registration
-    if errors:
-        for error in errors:
-            st.error(error)
-
+        # Display errors
+        if errors:
+            for error in errors:
+                st.error(error)
     else:
         st.success("All details are valid! Registration submitted successfully.")
 
