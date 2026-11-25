@@ -371,6 +371,7 @@ with st.container(border=True):
         key="address"
     )
 
+
 # ---------- COURSE DETAILS ----------
 
 st.markdown("## 2. Course Details")
@@ -386,41 +387,51 @@ with st.container(border=True):
     st.markdown("### Course Applied For")
 
     if program_level == "UG":
-        available_courses = UG_COURSES
+
+        major1 = st.selectbox(
+            "Major 1 *",
+            ["Select Course"] + UG_COURSES,
+            key="major1"
+        )
+
+        major2 = st.selectbox(
+            "Major 2",
+            ["Select Course"] + UG_COURSES,
+            key="major2"
+        )
+
+        # Store UG majors in the existing sheet columns
+        preference1 = major1
+        preference2 = major2
+        preference3 = "Select Course"
 
     elif program_level == "PG":
-        available_courses = PG_COURSES
-
-    else:
-        available_courses = []
-
-    if program_level == "Select Program":
-
-        st.info("Please select UG or PG to view available courses.")
-
-    else:
 
         col1, col2 = st.columns(2)
 
         with col1:
             preference1 = st.selectbox(
                 "Preference 1 *",
-                ["Select Course"] + available_courses,
+                ["Select Course"] + PG_COURSES,
                 key="preference1"
             )
 
         with col2:
             preference2 = st.selectbox(
                 "Preference 2",
-                ["Select Course"] + available_courses,
+                ["Select Course"] + PG_COURSES,
                 key="preference2"
             )
 
         preference3 = st.selectbox(
             "Preference 3",
-            ["Select Course"] + available_courses,
+            ["Select Course"] + PG_COURSES,
             key="preference3"
         )
+
+    else:
+        st.info("Please select UG or PG to view available courses.")
+
 
 # ---------- ACADEMIC QUALIFICATION ----------
 
