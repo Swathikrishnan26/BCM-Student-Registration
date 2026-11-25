@@ -605,3 +605,26 @@ with st.container(border=True):
 
                 st.error("Unable to save your registration. Please try again.")
                 st.write(e)
+                
+# ---------- FOOTER ----------
+
+st.markdown("""
+<style>
+.footer {
+    background-color: #39334F;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 25px;
+    font-size: 13px;
+}
+</style>
+
+<div class="footer">
+    <b>For Enquiries:</b> +91 XXXXXXXXXX | +91 XXXXXXXXXX
+    <br>
+    B. C. M. College, Kottayam (Autonomous)
+</div>
+""", unsafe_allow_html=True)
+
