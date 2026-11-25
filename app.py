@@ -66,13 +66,14 @@ worksheet = spreadsheet.sheet1
 st.markdown("""
 <style>
 
-/* Main page */
+/* Main page background */
 .stApp,
 [data-testid="stAppViewContainer"] {
-    background-color: #EFF7F6 !important;
+    background-color: #EFF5F8 !important;
     color-scheme: light !important;
 }
 
+/* Main content width */
 .block-container {
     max-width: 1150px;
     padding-top: 2rem;
@@ -81,7 +82,7 @@ st.markdown("""
 
 /* Headings */
 h1, h2, h3 {
-    color: #36556D !important;
+    color: #234766 !important;
 }
 
 h2 {
@@ -97,10 +98,10 @@ h3 {
 /* Form containers */
 div[data-testid="stVerticalBlockBorderWrapper"] {
     background-color: #FFFFFF !important;
-    border: 1px solid #DDD9E5 !important;
+    border: 1px solid #D4E0E9 !important;
     border-radius: 14px;
     padding: 22px;
-    box-shadow: 0 3px 12px rgba(57, 51, 79, 0.06);
+    box-shadow: 0 3px 12px rgba(23, 50, 77, 0.06);
 }
 
 /* Input boxes */
@@ -109,7 +110,7 @@ div[data-testid="stDateInput"] input,
 div[data-testid="stTextArea"] textarea {
     background-color: #FFFFFF !important;
     color: #24364b !important;
-    border: 1px solid #C9C3D5 !important;
+    border: 1px solid #B8C8D8 !important;
     border-radius: 8px;
     min-height: 42px;
 }
@@ -117,7 +118,7 @@ div[data-testid="stTextArea"] textarea {
 div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
     background-color: #FFFFFF !important;
     color: #24364b !important;
-    border: 1px solid #C9C3D5 !important;
+    border: 1px solid #B8C8D8 !important;
     border-radius: 8px;
     min-height: 42px;
 }
@@ -131,7 +132,7 @@ div[data-testid="stWidgetLabel"] p {
 
 /* Buttons */
 .stButton > button {
-    background-color: #39334F !important;
+    background-color: #17324D !important;
     color: #FFFFFF !important;
     border: none;
     border-radius: 9px;
@@ -141,13 +142,13 @@ div[data-testid="stWidgetLabel"] p {
 }
 
 .stButton > button:hover {
-    background-color: #514968 !important;
+    background-color: #285477 !important;
     color: #FFFFFF !important;
 }
 
 /* Dividers */
 hr {
-    border-color: #DDD9E5 !important;
+    border-color: #D4E0E9 !important;
     margin-top: 22px;
     margin-bottom: 22px;
 }
@@ -170,69 +171,79 @@ div[data-testid="stHorizontalBlock"] {
 st.markdown("""
 <style>
 
+/* College header */
 .college-header {
-    background: linear-gradient(120deg, #F1EAF8, #E4D8F0);
-    border: 1px solid #D5C5E5;
-    border-radius: 8px;
-    padding: 22px 25px;
+    background: linear-gradient(120deg, #EAF2F8, #DCE8F2);
+    border: 1px solid #C5D4E2;
+    border-radius: 12px;
+    padding: 25px 30px;
     display: flex;
     align-items: center;
-    gap: 25px;
-    min-height: 125px;
+    justify-content: center;
+    gap: 30px;
+    min-height: 155px;
     width: 100%;
     box-sizing: border-box;
 }
 
+/* BCM logo */
 .college-logo {
-    width: 170px;
+    width: 210px;
+    max-height: 125px;
     height: auto;
     object-fit: contain;
     flex-shrink: 0;
 }
 
+/* Header title */
 .header-text {
-    color: #39334F;
+    color: #17324D;
+    flex: 1;
 }
 
 .header-text h2 {
-    color: #39334F !important;
-    font-size: 27px;
+    color: #17324D !important;
+    font-size: 29px !important;
+    font-weight: 750;
     margin: 0;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
+    line-height: 1.4;
 }
 
-.header-text p {
-    color: #514968;
-    font-size: 13px;
-    margin: 8px 0 0 0;
-}
-
+/* Mobile screen */
 @media (max-width: 600px) {
 
     .college-header {
-        padding: 15px;
-        gap: 12px;
+        padding: 18px 12px;
+        gap: 14px;
+        min-height: 125px;
     }
 
     .college-logo {
-        width: 110px;
+        width: 125px;
+        max-height: 100px;
     }
 
     .header-text h2 {
-        font-size: 19px;
+        font-size: 19px !important;
+        letter-spacing: 0.5px;
     }
 }
 
 </style>
 """, unsafe_allow_html=True)
 
+# Load BCM logo
 with open("bcm_logo.png", "rb") as logo_file:
     logo_base64 = base64.b64encode(logo_file.read()).decode()
 
+# Display college header
 st.markdown(f"""
 <div class="college-header">
     <img src="data:image/png;base64,{logo_base64}"
-         class="college-logo">
+         class="college-logo"
+         alt="BCM College Logo">
+
     <div class="header-text">
         <h2>ONLINE REGISTRATION PORTAL</h2>
     </div>
@@ -689,7 +700,7 @@ with st.container(border=True):
 st.markdown("""
 <style>
 .footer {
-    background-color: #39334F;
+    background-color: #17324D;
     color: white;
     text-align: center;
     padding: 12px;
