@@ -536,23 +536,6 @@ with st.container(border=True):
 
         errors = []
 
-        # Validate contact number
-        if not validate_phone(contact_number):
-            errors.append("Contact number must contain at least 10 digits.")
-
-        # Validate email
-        if not validate_email(email):
-            errors.append("Please enter a valid email address.")
-
-        # Display errors
-        if errors:
-            for error in errors:
-                st.error(error)
-    else:
-        st.success("All details are valid! Registration submitted successfully.")
-
-        # Keep your existing registration saving code here
-
         # Personal information validation
 
         if not full_name.strip():
@@ -564,14 +547,14 @@ with st.container(border=True):
         if gender == "Select Gender":
             errors.append("Please select your gender.")
 
-        if not email.strip() or "@" not in email or "." not in email:
+        if not validate_email(email):
             errors.append("Please enter a valid email address.")
 
-        if not contact.strip():
-            errors.append("Please enter your contact number.")
+        if not validate_phone(contact_number):
+            errors.append("Contact number must contain at least 10 digits.")
 
-        if not guardian_contact.strip():
-            errors.append("Please enter your guardian's contact number.")
+        if not validate_phone(guardian_contact):
+            errors.append("Guardian contact number must contain at least 10 digits.")
 
         if not address.strip():
             errors.append("Please enter your address.")
@@ -581,10 +564,18 @@ with st.container(border=True):
         if program_level == "Select Program":
             errors.append("Please select UG or PG.")
 
-        else:
+        elif program_level == "UG":
+
+            if major1 == "Select Course":
+                errors.append("Please select Major 1.")
+
+            if major2 != "Select Course" and major1 == major2:
+                errors.append("Major 1 and Major 2 must be different.")
+
+        elif program_level == "PG":
 
             if preference1 == "Select Course":
-                errors.append("Please select your first course preference.")
+                errors.append("Please select Preference 1.")
 
             selected_preferences = [
                 p for p in [preference1, preference2, preference3]
@@ -594,25 +585,31 @@ with st.container(border=True):
             if len(selected_preferences) != len(set(selected_preferences)):
                 errors.append("Please select different courses for each preference.")
 
-            # Academic qualification validation
+        # Academic qualification validation
 
-            if program_level == "UG":
+        if program_level == "UG":
 
-                if sslc_board == "Select Board":
-                    errors.append("Please select your SSLC board.")
+            if sslc_board == "Select Board":
+                errors.append("Please select your SSLC board.")
 
-                if sslc_percentage == "Select Percentage":
-                    errors.append("Please select your SSLC percentage.")
+            if sslc_stream == "Select Stream":
+                errors.append("Please select your current stream of study.")
 
-            elif program_level == "PG":
+            if sslc_percentage == "Select Percentage":
+                errors.append("Please select your SSLC percentage.")
 
-                if plus_two_board == "Select Board":
-                    errors.append("Please select your Plus Two board.")
+        elif program_level == "PG":
 
-                if plus_two_percentage == "Select Percentage":
-                    errors.append("Please select your Plus Two percentage.")
+            if plus_two_board == "Select Board":
+                errors.append("Please select your Plus Two board.")
 
-        # Display validation results
+            if not plus_two_stream.strip():
+                errors.append("Please enter your current stream of study.")
+
+            if plus_two_percentage == "Select Percentage":
+                errors.append("Please select your Plus Two percentage.")
+
+        # Display errors
 
         if errors:
 
@@ -622,6 +619,8 @@ with st.container(border=True):
                 st.write("•", error)
 
         else:
+
+            # Academic details
 
             if program_level == "UG":
                 board = sslc_board
@@ -633,12 +632,21 @@ with st.container(border=True):
                 stream = plus_two_stream
                 percentage = plus_two_percentage
 
+            # Submission date and time in IST
+
+            now_ist = datetime.now(ZoneInfo("Asia/Kolkata"))
+
+            submission_date = now_ist.strftime("%d/%m/%Y")
+            submission_time = now_ist.strftime("%I:%M %p")
+
+            # Save student details
+
             student_data = [
                 full_name,
                 dob.strftime("%d/%m/%Y"),
                 gender,
                 email,
-                contact,
+                contact_number,
                 guardian_contact,
                 address,
                 program_level,
@@ -648,9 +656,10 @@ with st.container(border=True):
                 board,
                 stream,
                 percentage,
-                datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%d/%m/%Y"),
-                datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%I:%M %p")
-                ]
+                submission_date,
+                submission_time,
+                ", ".join(residential_training)
+            ]
 
             try:
 
@@ -668,6 +677,12 @@ with st.container(border=True):
 
                 st.error("Unable to save your registration. Please try again.")
                 st.write(e)
+
+        
+
+            
+
+
                 
 # ---------- FOOTER ----------
 
