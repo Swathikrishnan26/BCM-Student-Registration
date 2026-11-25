@@ -538,7 +538,7 @@ with st.container(border=True):
 
     # Validate contact number
     if not validate_phone(contact_number):
-    errors.append("Contact number must contain at least 10 digits.")
+        errors.append("Contact number must contain at least 10 digits.")
 
     # Validate email
     if not validate_email(Email-Address):
