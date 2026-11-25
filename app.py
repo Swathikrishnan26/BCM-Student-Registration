@@ -225,7 +225,6 @@ st.markdown(f"""
          class="college-logo">
     <div class="header-text">
         <h2>ONLINE REGISTRATION PORTAL</h2>
-        
     </div>
 </div>
 """, unsafe_allow_html=True)
