@@ -224,8 +224,8 @@ st.markdown(f"""
     <img src="data:image/png;base64,{logo_base64}"
          class="college-logo">
     <div class="header-text">
-        <h2>ONLINE REGISTRATION FORM</h2>
-        <p>B. C. M. College, Kottayam (Autonomous)</p>
+        <h2>ONLINE REGISTRATION PORTAL</h2>
+        
     </div>
 </div>
 """, unsafe_allow_html=True)
