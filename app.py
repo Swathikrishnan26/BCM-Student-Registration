@@ -364,7 +364,7 @@ with st.container(border=True):
     col1, col2 = st.columns(2)
 
     with col1:
-        contact = st.text_input(
+        contact_number = st.text_input(
             "Contact / WhatsApp Number *",
             key="contact"
         )
@@ -537,8 +537,8 @@ with st.container(border=True):
         errors = []
 
     # Validate contact number
-    if not validate_phone(Contact/WhatsApp Number):
-        errors.append("Contact number must contain at least 10 digits.")
+    if not validate_phone(contact_number):
+    errors.append("Contact number must contain at least 10 digits.")
 
     # Validate email
     if not validate_email(Email-Address):
