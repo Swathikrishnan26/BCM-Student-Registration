@@ -341,7 +341,7 @@ with st.container(border=True):
     with col1:
         gender = st.selectbox(
             "Gender *",
-            ["Select Gender", "FEMALE", "MALE", "OTHER GENDER"],
+            ["Select Gender", "FEMALE", "MALE", "OTHER"],
             key="gender"
         )
 
