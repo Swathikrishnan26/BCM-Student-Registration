@@ -482,6 +482,29 @@ elif program_level == "PG":
             ["Select Percentage"] + PERCENTAGE_RANGES,
             key="plus_two_percentage"
         )
+# ---------- RESIDENTIAL TRAINING PROGRAMME ----------
+
+st.markdown("## 4. Residential Training Programme")
+
+with st.container(border=True):
+
+    st.markdown(
+        "**Would you like to opt for a Residential Training Programme at BCM?**"
+    )
+
+    residential_training = st.multiselect(
+        "Select your preferred training programmes",
+        [
+            "BCM Civil Service Academy",
+            "SSC, PSC, RRB, Bank Exams",
+            "ACCA",
+            "CA (India)",
+            "BCM Defence Academy (Uniform Services)",
+            "Soft Skills for Professionals",
+            "NET/JRF"
+        ],
+        placeholder="Choose one or more programmes"
+    )        
 
 # ---------- APPLICATION SUBMISSION ----------
 
