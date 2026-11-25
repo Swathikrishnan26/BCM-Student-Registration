@@ -1,5 +1,6 @@
 import streamlit as st
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 import gspread
 import base64
 
@@ -586,8 +587,10 @@ with st.container(border=True):
                 preference3 if preference3 != "Select Course" else "",
                 board,
                 stream,
-                percentage
-            ]
+                percentage,
+                datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%d/%m/%Y"),
+                datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%I:%M %p")
+                ]
 
             try:
 
