@@ -537,11 +537,11 @@ with st.container(border=True):
         errors = []
 
     # Validate contact number
-    if not validate_phone(contact_number):
+    if not validate_phone(Contact/WhatsApp Number):
         errors.append("Contact number must contain at least 10 digits.")
 
     # Validate email
-    if not validate_email(email):
+    if not validate_email(Email-Address):
         errors.append("Please enter a valid email address.")
 
     # Display errors or continue registration
