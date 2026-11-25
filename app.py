@@ -3,7 +3,17 @@ from datetime import date, datetime
 from zoneinfo import ZoneInfo
 import gspread
 import base64
+import re
+# Phone number validation
+def validate_phone(phone):
+    digits = re.sub(r"\D", "", phone)
+    return len(digits) >= 10
 
+
+# Email validation
+def validate_email(email):
+    pattern = r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+    return re.fullmatch(pattern, email.strip()) is not None
 st.set_page_config(
     page_title="B.C.M. College Kottayam (Autonomous) Registration Portal",
     page_icon="🎓",
@@ -525,6 +535,24 @@ with st.container(border=True):
     if st.button("REGISTER", type="primary", use_container_width=True):
 
         errors = []
+
+    # Validate contact number
+    if not validate_phone(contact_number):
+        errors.append("Contact number must contain at least 10 digits.")
+
+    # Validate email
+    if not validate_email(email):
+        errors.append("Please enter a valid email address.")
+
+    # Display errors or continue registration
+    if errors:
+        for error in errors:
+            st.error(error)
+
+    else:
+        st.success("All details are valid! Registration submitted successfully.")
+
+        # Keep your existing registration saving code here
 
         # Personal information validation
 
