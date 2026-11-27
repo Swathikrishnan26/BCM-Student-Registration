@@ -7,7 +7,7 @@ import re
 # Phone number validation
 def validate_phone(phone):
     digits = re.sub(r"\D", "", phone)
-    return len(digits) >= 10
+    return len(digits) == 10
 
 
 # Email validation
