@@ -700,7 +700,7 @@ st.markdown("""
 </style>
 
 <div class="footer">
-    <b>For Enquiries:</b> +91 XXXXXXXXXX | +91 XXXXXXXXXX
+    <b>For Enquiries:</b> 0481 256 2171 / 9188 944 099 / 9961 988 101 / 9496 801 986
     <br>
     B. C. M. College, Kottayam (Autonomous)
 </div>
