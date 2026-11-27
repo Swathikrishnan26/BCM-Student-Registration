@@ -7,7 +7,7 @@ import re
 # Phone number validation
 def validate_phone(phone):
     digits = re.sub(r"\D", "", phone)
-    return len(digits) >= 10
+    return len(digits) == 10
 
 
 # Email validation
@@ -397,25 +397,63 @@ with st.container(border=True):
 
     if program_level == "UG":
 
-        major1 = st.selectbox(
-            "Major 1 *",
-            ["Select Course"] + UG_COURSES,
-            key="major1"
-        )
+    major1_keys = [
+        "major1_pref1", "major1_pref2", "major1_pref3",
+        "major1_pref4", "major1_pref5"
+    ]
 
-        major2 = st.selectbox(
-            "Major 2",
-            ["Select Course"] + UG_COURSES,
-            key="major2"
-        )
+    major2_keys = [
+        "major2_pref1", "major2_pref2", "major2_pref3",
+        "major2_pref4", "major2_pref5"
+    ]
 
-        # Store UG majors in the existing sheet columns
-        preference1 = major1
-        preference2 = major2
-        preference3 = "Select Course"
+    for key in major1_keys + major2_keys:
+        if key not in st.session_state:
+            st.session_state[key] = "Select Course"
 
-    elif program_level == "PG":
+    st.markdown("### Major 1 *")
 
+    for i, key in enumerate(major1_keys, start=1):
+
+        selected = [
+            st.session_state[k]
+            for k in major1_keys
+            if k != key and st.session_state[k] != "Select Course"
+        ]
+
+        options = ["Select Course"] + [
+            c for c in UG_COURSES if c not in selected
+        ]
+
+        st.selectbox(f"Preference {i} *", options, key=key)
+
+    major1_selected = [
+        st.session_state[k]
+        for k in major1_keys
+        if st.session_state[k] != "Select Course"
+    ]
+
+    for key in major2_keys:
+        if st.session_state[key] in major1_selected:
+            st.session_state[key] = "Select Course"
+
+    st.markdown("### Major 2")
+
+    for i, key in enumerate(major2_keys, start=1):
+
+        selected = major1_selected + [
+            st.session_state[k]
+            for k in major2_keys
+            if k != key and st.session_state[k] != "Select Course"
+        ]
+
+        options = ["Select Course"] + [
+            c for c in UG_COURSES if c not in selected
+        ]
+
+        st.selectbox(f"Preference {i}", options, key=key)
+
+elif program_level == "PG":
         col1, col2 = st.columns(2)
 
         with col1:
