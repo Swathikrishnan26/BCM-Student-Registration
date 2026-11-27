@@ -260,10 +260,7 @@ if registration_success:
 # ---------- UG COURSES ----------
 
 UG_COURSES = [
-    "B.A. (Hons) English Language & Literature",
-    "B.A. (Hons) Economics",
-    "B.A. (Hons) Sociology",
-    "B.A. (Hons) History",
+    "B.Sc. (Hons) Statistics",
     "B.Sc. (Hons) Mathematics",
     "B.Sc. (Hons) Computer Science (SF)",
     "B.Sc. (Hons) Home Science",
@@ -272,6 +269,10 @@ UG_COURSES = [
     "B.Sc. (Hons) Physics",
     "B.Sc. (Hons) Chemistry",
     "B.Sc. (Hons) Botany",
+    "B.A. (Hons) English Language & Literature",
+    "B.A. (Hons) Economics",
+    "B.A. (Hons) Sociology",
+    "B.A. (Hons) History",
     "B.Com. (Hons) (SF)",
     "B.Com. (Hons)"
 ]
@@ -279,10 +280,10 @@ UG_COURSES = [
 # ---------- PG COURSES ----------
 
 PG_COURSES = [
-    "M.A. English",
+    "M.Sc. Statistics with Data Science",
     "M.Sc. Mathematics",
-    "M.Sc. Statistics",
     "M.Sc. Home Science (Child Development) (SF)",
+    "M.A. English",
     "M.Com. (SF)",
     "Master of Social Work (SF)"
 ]
