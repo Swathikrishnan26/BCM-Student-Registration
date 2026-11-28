@@ -694,7 +694,7 @@ with st.container(border=True):
         
             errors.append("Please select UG or PG.")
         
-        elif program_level == "UG":
+    elif program_level == "UG":
 
     # Major 1 validation
 
