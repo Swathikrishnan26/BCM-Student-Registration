@@ -505,7 +505,7 @@ elif program_level == "PG":
         )
 # ---------- RESIDENTIAL TRAINING PROGRAMME ----------
 
-st.markdown("## 4. Residential Training Programme")
+st.markdown("## 4. Residential Training Programme (Additional)")
 
 with st.container(border=True):
 
