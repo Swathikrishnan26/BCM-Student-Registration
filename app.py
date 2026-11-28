@@ -24,37 +24,30 @@ st.set_page_config(
 
 if st.session_state.pop("_clear_registration_form", False):
 
-   reset_values = {
-    "full_name": "",
-    "dob": None,
-    "gender": "Select Gender",
-    "email": "",
-    "contact": "",
-    "guardian_contact": "",
-    "address": "",
-    "programme_level": "Select Programme",
+    reset_values = {
+        "full_name": "",
+        "dob": None,
+        "gender": "Select Gender",
+        "email": "",
+        "contact": "",
+        "guardian_contact": "",
+        "address": "",
+        "programme_level": "Select Programme",
+        "major1_pref1": "Select Course",
+        "major1_pref2": "Select Course",
+        "major1_pref3": "Select Course",
+        "major2_pref1": "Select Course",
+        "major2_pref2": "Select Course",
+        "major2_pref3": "Select Course",
+        "language_pref1": "Select Language",
+        "language_pref2": "Select Language",
+        "language_pref3": "Select Language",
+        "plus_two_board": "Select Board",
+        "plus_two_stream": "",
+        "plus_two_percentage": "Select Percentage"
+    }
 
-    "major1_pref1": "Select Course",
-    "major1_pref2": "Select Course",
-    "major1_pref3": "Select Course",
-
-    "major2_pref1": "Select Course",
-    "major2_pref2": "Select Course",
-    "major2_pref3": "Select Course",
-
-    "language_pref1": "Select Language",
-    "language_pref2": "Select Language",
-    "language_pref3": "Select Language",
-
-    "preference1": "Select Course",
-    "preference2": "Select Course",
-    "preference3": "Select Course",
-
-    "plus_two_board": "Select Board",
-    "plus_two_percentage": "Select Percentage"
-}
-
-for key, value in reset_values.items():
+    for key, value in reset_values.items():
         st.session_state[key] = value
 
 registration_success = st.session_state.pop(
@@ -691,55 +684,44 @@ with st.container(border=True):
         # Course validation
 
         if program_level == "Select Programme":
-        
             errors.append("Please select UG or PG.")
-        
-    elif program_level == "UG":
 
-    # Major 1 validation
+        else:
+            # Major 1 validation
+            if major1_pref1 == "Select Course":
+                errors.append("Please select Major 1 Preference 1.")
 
-    if preference1 == "Select Course":
-        errors.append("Please select Major 1 Preference 1.")
+            major1_selections = [
+                p for p in [major1_pref1, major1_pref2, major1_pref3]
+                if p != "Select Course"
+            ]
 
-    major1_selections = [
-        p for p in [preference1, preference2, preference3]
-        if p != "Select Course"
-    ]
+            if len(major1_selections) != len(set(major1_selections)):
+                errors.append("Major 1 preferences must be different.")
 
-    if len(major1_selections) != len(set(major1_selections)):
-        errors.append("Major 1 preferences must be different.")
+            # Major 2 validation (optional)
+            major2_selections = [
+                p for p in [major2_pref1, major2_pref2, major2_pref3]
+                if p != "Select Course"
+            ]
 
-    # Major 2 – Second Language validation
+            if len(major2_selections) != len(set(major2_selections)):
+                errors.append("Major 2 preferences must be different.")
 
-    language_selections = [
-        p for p in [
-            second_language1,
-            second_language2,
-            second_language3
-        ]
-        if p != "Select Language"
-    ]
+            # Second Language validation
+            if language_pref1 == "Select Language":
+                errors.append("Please select Second Language Preference 1.")
 
-    if len(language_selections) != len(set(language_selections)):
-        errors.append("Second Language preferences must be different.")
+            language_selections = [
+                p for p in [language_pref1, language_pref2, language_pref3]
+                if p != "Select Language"
+            ]
 
-elif program_level == "PG":
+            if len(language_selections) != len(set(language_selections)):
+                errors.append("Second Language preferences must be different.")
 
-    if preference1 == "Select Course":
-        errors.append("Please select Programme Preference 1.")
-
-    selected_preferences = [
-        p for p in [preference1, preference2, preference3]
-        if p != "Select Course"
-    ]
-
-    if len(selected_preferences) != len(set(selected_preferences)):
-        errors.append("Please select different courses for each preference.")
-        
         # Academic qualification validation
-
         if program_level == "UG":
-
             if sslc_board == "Select Board":
                 errors.append("Please select your SSLC board.")
 
@@ -750,7 +732,6 @@ elif program_level == "PG":
                 errors.append("Please select your SSLC percentage.")
 
         elif program_level == "PG":
-
             if plus_two_board == "Select Board":
                 errors.append("Please select your Plus Two board.")
 
@@ -761,37 +742,29 @@ elif program_level == "PG":
                 errors.append("Please select your Plus Two percentage.")
 
         # Display errors
-
         if errors:
-
             st.error("Please correct the following details:")
 
             for error in errors:
                 st.write("•", error)
 
         else:
-
             # Academic details
-
             if program_level == "UG":
                 board = sslc_board
                 stream = sslc_stream
                 percentage = sslc_percentage
-
             else:
                 board = plus_two_board
                 stream = plus_two_stream
                 percentage = plus_two_percentage
 
             # Submission date and time in IST
-
             now_ist = datetime.now(ZoneInfo("Asia/Kolkata"))
-
             submission_date = now_ist.strftime("%d/%m/%Y")
             submission_time = now_ist.strftime("%I:%M %p")
 
             # Save student details
-
             student_data = [
                 full_name,
                 dob.strftime("%d/%m/%Y"),
@@ -801,9 +774,15 @@ elif program_level == "PG":
                 guardian_contact,
                 address,
                 program_level,
-                preference1,
-                preference2 if preference2 != "Select Course" else "",
-                preference3 if preference3 != "Select Course" else "",
+                major1_pref1,
+                major1_pref2 if major1_pref2 != "Select Course" else "",
+                major1_pref3 if major1_pref3 != "Select Course" else "",
+                major2_pref1 if major2_pref1 != "Select Course" else "",
+                major2_pref2 if major2_pref2 != "Select Course" else "",
+                major2_pref3 if major2_pref3 != "Select Course" else "",
+                language_pref1,
+                language_pref2 if language_pref2 != "Select Language" else "",
+                language_pref3 if language_pref3 != "Select Language" else "",
                 board,
                 stream,
                 percentage,
@@ -813,7 +792,6 @@ elif program_level == "PG":
             ]
 
             try:
-
                 worksheet.append_row(
                     student_data,
                     value_input_option="USER_ENTERED"
@@ -821,20 +799,13 @@ elif program_level == "PG":
 
                 st.session_state["_registration_success"] = True
                 st.session_state["_clear_registration_form"] = True
-
                 st.rerun()
 
             except Exception as e:
-
                 st.error("Unable to save your registration. Please try again.")
                 st.write(e)
 
-        
 
-            
-
-
-                
 # ---------- FOOTER ----------
 
 st.markdown("""
