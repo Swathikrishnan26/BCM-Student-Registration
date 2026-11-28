@@ -20,35 +20,41 @@ st.set_page_config(
     layout="wide"
 )
 
-#---------- CLEAR FORM AFTER SUCCESSFUL REGISTRATION ----------
+# ---------- CLEAR FORM AFTER SUCCESSFUL REGISTRATION ----------
 
 if st.session_state.pop("_clear_registration_form", False):
 
-reset_values = {  
-    "full_name": "",  
-    "dob": None,  
-    "gender": "Select Gender",  
-    "email": "",  
-    "contact": "",  
-    "guardian_contact": "",  
-    "address": "",  
-    "program_level": "Select Program",  
-    "preference1": "Select Course",  
-    "preference2": "Select Course",  
-    "preference3": "Select Course",  
-    "sslc_board": "Select Board",  
-    "sslc_stream": "",  
-    "sslc_percentage": "Select Percentage",  
-    "plus_two_board": "Select Board",  
-    "plus_two_stream": "Select Stream",  
-    "plus_two_percentage": "Select Percentage"  
-}  
+    reset_values = {
+        "full_name": "",
+        "dob": None,
+        "gender": "Select Gender",
+        "email": "",
+        "contact": "",
+        "guardian_contact": "",
+        "address": "",
+        "programme_level": "Select Programme",
 
-for key, value in reset_values.items():  
-    st.session_state[key] = value
+        "major1_pref1": "Select Course",
+        "major1_pref2": "Select Course",
+        "major1_pref3": "Select Course",
+
+        "major2_pref1": "Select Language",
+        "major2_pref2": "Select Language",
+        "major2_pref3": "Select Language",
+
+        "preference1": "Select Course",
+        "preference2": "Select Course",
+        "preference3": "Select Course",
+
+        "plus_two_board": "Select Board",
+        "plus_two_percentage": "Select Percentage"
+    }
+
+    for key, value in reset_values.items():
+        st.session_state[key] = value
 
 registration_success = st.session_state.pop(
-"_registration_success", False
+    "_registration_success", False
 )
 
 # ---------- GOOGLE SHEETS CONNECTION ----------
