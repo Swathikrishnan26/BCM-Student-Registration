@@ -382,9 +382,17 @@ with st.container(border=True):
     )
 
 
-# ---------- COURSE DETAILS ----------
+# ---------- PROGRAMME DETAILS ----------
 
 st.markdown("## 2. Programme Details")
+
+SECOND_LANGUAGE_OPTIONS = [
+    "Malayalam",
+    "Hindi",
+    "German",
+    "French",
+    "Tamil (Online)"
+]
 
 with st.container(border=True):
 
@@ -396,53 +404,101 @@ with st.container(border=True):
 
     st.markdown("### Programme Applied For")
 
+    # ---------- UG PROGRAMME ----------
+
     if program_level == "UG":
 
-        major1 = st.selectbox(
-            "Major 1 *",
+        st.markdown("**Major 1 – Programme Preferences**")
+
+        major1_pref1 = st.selectbox(
+            "Major 1 (Preference 1) *",
             ["Select Course"] + UG_COURSES,
-            key="major1"
+            key="major1_pref1"
         )
 
-        major2 = st.selectbox(
-            "Major 2",
+        major1_pref2 = st.selectbox(
+            "Major 1 (Preference 2)",
             ["Select Course"] + UG_COURSES,
-            key="major2"
+            key="major1_pref2"
         )
 
-        # Store UG majors in the existing sheet columns
-        preference1 = major1
-        preference2 = major2
-        preference3 = "Select Course"
+        major1_pref3 = st.selectbox(
+            "Major 1 (Preference 3)",
+            ["Select Course"] + UG_COURSES,
+            key="major1_pref3"
+        )
+
+        st.markdown("---")
+
+        st.markdown("**Major 2 – Second Language Preferences (Optional)**")
+
+        major2_pref1 = st.selectbox(
+            "Major 2 (Preference 1)",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="major2_pref1"
+        )
+
+        major2_pref2 = st.selectbox(
+            "Major 2 (Preference 2)",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="major2_pref2"
+        )
+
+        major2_pref3 = st.selectbox(
+            "Major 2 (Preference 3)",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="major2_pref3"
+        )
+
+        # Store values for submission
+        preference1 = major1_pref1
+        preference2 = major1_pref2
+        preference3 = major1_pref3
+
+        second_language1 = major2_pref1
+        second_language2 = major2_pref2
+        second_language3 = major2_pref3
+
+    # ---------- PG PROGRAMME ----------
 
     elif program_level == "PG":
 
-        col1, col2 = st.columns(2)
+        st.markdown("**Programme Preferences**")
 
-        with col1:
-            preference1 = st.selectbox(
-                "Preference 1 *",
-                ["Select Course"] + PG_COURSES,
-                key="preference1"
-            )
+        preference1 = st.selectbox(
+            "Programme Preference 1 *",
+            ["Select Course"] + PG_COURSES,
+            key="preference1"
+        )
 
-        with col2:
-            preference2 = st.selectbox(
-                "Preference 2",
-                ["Select Course"] + PG_COURSES,
-                key="preference2"
-            )
+        preference2 = st.selectbox(
+            "Programme Preference 2",
+            ["Select Course"] + PG_COURSES,
+            key="preference2"
+        )
 
         preference3 = st.selectbox(
-            "Preference 3",
+            "Programme Preference 3",
             ["Select Course"] + PG_COURSES,
             key="preference3"
         )
 
+        second_language1 = ""
+        second_language2 = ""
+        second_language3 = ""
+
     else:
-        st.info("Please select UG or PG to view available courses.")
 
+        st.info("Please select UG or PG to view available programmes.")
 
+        preference1 = "Select Course"
+        preference2 = "Select Course"
+        preference3 = "Select Course"
+
+        second_language1 = ""
+        second_language2 = ""
+        second_language3 = ""
+        
 # ---------- ACADEMIC QUALIFICATION ----------
 
 st.markdown("## 3. Academic Qualification")
@@ -562,30 +618,52 @@ with st.container(border=True):
 
         # Course validation
 
-        if program_level == "Select Program":
-            errors.append("Please select UG or PG.")
+if program_level == "Select Programme":
 
-        elif program_level == "UG":
+    errors.append("Please select UG or PG.")
 
-            if major1 == "Select Course":
-                errors.append("Please select Major 1.")
+elif program_level == "UG":
 
-            if major2 != "Select Course" and major1 == major2:
-                errors.append("Major 1 and Major 2 must be different.")
+    # Major 1 validation
 
-        elif program_level == "PG":
+    if preference1 == "Select Course":
+        errors.append("Please select Major 1 Preference 1.")
 
-            if preference1 == "Select Course":
-                errors.append("Please select Preference 1.")
+    major1_selections = [
+        p for p in [preference1, preference2, preference3]
+        if p != "Select Course"
+    ]
 
-            selected_preferences = [
-                p for p in [preference1, preference2, preference3]
-                if p != "Select Course"
-            ]
+    if len(major1_selections) != len(set(major1_selections)):
+        errors.append("Major 1 preferences must be different.")
 
-            if len(selected_preferences) != len(set(selected_preferences)):
-                errors.append("Please select different courses for each preference.")
+    # Major 2 – Second Language validation
 
+    language_selections = [
+        p for p in [
+            second_language1,
+            second_language2,
+            second_language3
+        ]
+        if p != "Select Language"
+    ]
+
+    if len(language_selections) != len(set(language_selections)):
+        errors.append("Second Language preferences must be different.")
+
+elif program_level == "PG":
+
+    if preference1 == "Select Course":
+        errors.append("Please select Programme Preference 1.")
+
+    selected_preferences = [
+        p for p in [preference1, preference2, preference3]
+        if p != "Select Course"
+    ]
+
+    if len(selected_preferences) != len(set(selected_preferences)):
+        errors.append("Please select different courses for each preference.")
+        
         # Academic qualification validation
 
         if program_level == "UG":
