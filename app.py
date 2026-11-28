@@ -384,17 +384,17 @@ with st.container(border=True):
 
 # ---------- COURSE DETAILS ----------
 
-st.markdown("## 2. Course Details")
+st.markdown("## 2. Programme Details")
 
 with st.container(border=True):
 
     program_level = st.selectbox(
-        "Program Level *",
-        ["Select Program", "UG", "PG"],
-        key="program_level"
+        "Programme Level *",
+        ["Select Programme", "UG", "PG"],
+        key="programme_level"
     )
 
-    st.markdown("### Course Applied For")
+    st.markdown("### Programme Applied For")
 
     if program_level == "UG":
 
@@ -462,7 +462,7 @@ if program_level == "UG":
 
         with col2:
             sslc_stream = st.selectbox(
-                "Current Stream of Study *",
+                "Stream of Study *",
                 [
                     "Select Stream",
                     "Science",
