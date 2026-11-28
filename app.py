@@ -54,7 +54,7 @@ if st.session_state.pop("_clear_registration_form", False):
     "plus_two_percentage": "Select Percentage"
 }
 
-    for key, value in reset_values.items():
+for key, value in reset_values.items():
         st.session_state[key] = value
 
 registration_success = st.session_state.pop(
