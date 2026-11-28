@@ -24,26 +24,31 @@ st.set_page_config(
 
 if st.session_state.pop("_clear_registration_form", False):
 
-    reset_values = {
-        "full_name": "",
-        "dob": None,
-        "gender": "Select Gender",
-        "email": "",
-        "contact": "",
-        "guardian_contact": "",
-        "address": "",
-        "program_level": "Select Program",
-        "preference1": "Select Course",
-        "preference2": "Select Course",
-        "preference3": "Select Course",
-        "sslc_board": "Select Board",
-        "sslc_stream": "",
-        "sslc_percentage": "Select Percentage",
-        "plus_two_board": "Select Board",
-        "plus_two_stream": "Select Stream",
-        "plus_two_percentage": "Select Percentage"
-    }
+ reset_values = {
+    "full_name": "",
+    "dob": None,
+    "gender": "Select Gender",
+    "email": "",
+    "contact": "",
+    "guardian_contact": "",
+    "address": "",
+    "programme_level": "Select Programme",
 
+    "major1_pref1": "Select Course",
+    "major1_pref2": "Select Course",
+    "major1_pref3": "Select Course",
+
+    "major2_pref1": "Select Language",
+    "major2_pref2": "Select Language",
+    "major2_pref3": "Select Language",
+
+    "preference1": "Select Course",
+    "preference2": "Select Course",
+    "preference3": "Select Course",
+
+    "plus_two_board": "Select Board",
+    "plus_two_percentage": "Select Percentage"
+}
     for key, value in reset_values.items():
         st.session_state[key] = value
 
@@ -722,26 +727,38 @@ elif program_level == "PG":
 
             # Save student details
 
-            student_data = [
-                full_name,
-                dob.strftime("%d/%m/%Y"),
-                gender,
-                email,
-                contact_number,
-                guardian_contact,
-                address,
-                program_level,
-                preference1,
-                preference2 if preference2 != "Select Course" else "",
-                preference3 if preference3 != "Select Course" else "",
-                board,
-                stream,
-                percentage,
-                submission_date,
-                submission_time,
-                ", ".join(residential_training)
-            ]
+student_data = [
+    full_name,
+    dob.strftime("%d/%m/%Y"),
+    gender,
+    email,
+    contact_number,
+    guardian_contact,
+    address,
+    program_level,
 
+    # Major 1 / Programme Preferences
+    preference1 if preference1 != "Select Course" else "",
+    preference2 if preference2 != "Select Course" else "",
+    preference3 if preference3 != "Select Course" else "",
+
+    # Major 2 / Second Language Preferences
+    second_language1,
+    second_language2,
+    second_language3,
+
+    # Academic Details
+    board,
+    stream,
+    percentage,
+
+    # Submission Date and Time
+    submission_date,
+    submission_time,
+
+    # Residential Training
+    ", ".join(residential_training)
+]
             try:
 
                 worksheet.append_row(
