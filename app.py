@@ -20,7 +20,7 @@ st.set_page_config(
     layout="wide"
 )
 
----------- CLEAR FORM AFTER SUCCESSFUL REGISTRATION ----------
+#---------- CLEAR FORM AFTER SUCCESSFUL REGISTRATION ----------
 
 if st.session_state.pop("_clear_registration_form", False):
 
