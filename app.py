@@ -24,33 +24,32 @@ st.set_page_config(
 
 if st.session_state.pop("_clear_registration_form", False):
 
-  reset_values = {
-    "full_name": "",
-    "dob": None,
-    "gender": "Select Gender",
-    "email": "",
-    "contact": "",
-    "guardian_contact": "",
-    "address": "",
-    "programme_level": "Select Programme",
+    reset_values = {
+        "full_name": "",
+        "dob": None,
+        "gender": "Select Gender",
+        "email": "",
+        "contact": "",
+        "guardian_contact": "",
+        "address": "",
+        "program_level": "Select Program",
+        "preference1": "Select Course",
+        "preference2": "Select Course",
+        "preference3": "Select Course",
+        "sslc_board": "Select Board",
+        "sslc_stream": "",
+        "sslc_percentage": "Select Percentage",
+        "plus_two_board": "Select Board",
+        "plus_two_stream": "Select Stream",
+        "plus_two_percentage": "Select Percentage"
+    }
 
-    "major1_pref1": "Select Course",
-    "major1_pref2": "Select Course",
-    "major1_pref3": "Select Course",
+    for key, value in reset_values.items():
+        st.session_state[key] = value
 
-    "major2_pref1": "Select Language",
-    "major2_pref2": "Select Language",
-    "major2_pref3": "Select Language",
-
-    "preference1": "Select Course",
-    "preference2": "Select Course",
-    "preference3": "Select Course",
-
-    "plus_two_board": "Select Board",
-    "plus_two_percentage": "Select Percentage"
-}   
-
-    
+registration_success = st.session_state.pop(
+    "_registration_success", False
+)
 
 # ---------- GOOGLE SHEETS CONNECTION ----------
 
@@ -385,17 +384,7 @@ with st.container(border=True):
 
 # ---------- COURSE DETAILS ----------
 
-# ---------- PROGRAMME DETAILS ----------
-
 st.markdown("## 2. Programme Details")
-
-SECOND_LANGUAGE_OPTIONS = [
-    "Malayalam",
-    "Hindi",
-    "German",
-    "French",
-    "Tamil (Online)"
-]
 
 with st.container(border=True):
 
@@ -407,100 +396,52 @@ with st.container(border=True):
 
     st.markdown("### Programme Applied For")
 
-    # ---------- UG PROGRAMME ----------
-
     if program_level == "UG":
 
-        st.markdown("**Major 1 – Programme Preferences**")
-
-        major1_pref1 = st.selectbox(
-            "Major 1 (Preference 1) *",
+        major1 = st.selectbox(
+            "Major 1 *",
             ["Select Course"] + UG_COURSES,
-            key="major1_pref1"
+            key="major1"
         )
 
-        major1_pref2 = st.selectbox(
-            "Major 1 (Preference 2)",
+        major2 = st.selectbox(
+            "Major 2",
             ["Select Course"] + UG_COURSES,
-            key="major1_pref2"
+            key="major2"
         )
 
-        major1_pref3 = st.selectbox(
-            "Major 1 (Preference 3)",
-            ["Select Course"] + UG_COURSES,
-            key="major1_pref3"
-        )
-
-        st.markdown("---")
-
-        st.markdown("**Major 2 – Second Language Preferences (Optional)**")
-
-        major2_pref1 = st.selectbox(
-            "Major 2 (Preference 1)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref1"
-        )
-
-        major2_pref2 = st.selectbox(
-            "Major 2 (Preference 2)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref2"
-        )
-
-        major2_pref3 = st.selectbox(
-            "Major 2 (Preference 3)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref3"
-        )
-
-        # Store values for submission
-        preference1 = major1_pref1
-        preference2 = major1_pref2
-        preference3 = major1_pref3
-
-        second_language1 = major2_pref1
-        second_language2 = major2_pref2
-        second_language3 = major2_pref3
-
-    # ---------- PG PROGRAMME ----------
+        # Store UG majors in the existing sheet columns
+        preference1 = major1
+        preference2 = major2
+        preference3 = "Select Course"
 
     elif program_level == "PG":
 
-        st.markdown("**Programme Preferences**")
+        col1, col2 = st.columns(2)
 
-        preference1 = st.selectbox(
-            "Programme Preference 1 *",
-            ["Select Course"] + PG_COURSES,
-            key="preference1"
-        )
+        with col1:
+            preference1 = st.selectbox(
+                "Preference 1 *",
+                ["Select Course"] + PG_COURSES,
+                key="preference1"
+            )
 
-        preference2 = st.selectbox(
-            "Programme Preference 2",
-            ["Select Course"] + PG_COURSES,
-            key="preference2"
-        )
+        with col2:
+            preference2 = st.selectbox(
+                "Preference 2",
+                ["Select Course"] + PG_COURSES,
+                key="preference2"
+            )
 
         preference3 = st.selectbox(
-            "Programme Preference 3",
+            "Preference 3",
             ["Select Course"] + PG_COURSES,
             key="preference3"
         )
 
-        second_language1 = ""
-        second_language2 = ""
-        second_language3 = ""
-
     else:
+        st.info("Please select UG or PG to view available courses.")
 
-        st.info("Please select UG or PG to view available programmes.")
-
-        preference1 = "Select Course"
-        preference2 = "Select Course"
-        preference3 = "Select Course"
-
-        second_language1 = ""
-        second_language2 = ""
-        second_language3 = ""
 
 # ---------- ACADEMIC QUALIFICATION ----------
 
@@ -621,51 +562,30 @@ with st.container(border=True):
 
         # Course validation
 
-if program_level == "Select Programme":
+        if program_level == "Select Program":
+            errors.append("Please select UG or PG.")
 
-    errors.append("Please select UG or PG.")
+        elif program_level == "UG":
 
-elif program_level == "UG":
+            if major1 == "Select Course":
+                errors.append("Please select Major 1.")
 
-    # Major 1 validation
+            if major2 != "Select Course" and major1 == major2:
+                errors.append("Major 1 and Major 2 must be different.")
 
-    if preference1 == "Select Course":
-        errors.append("Please select Major 1 Preference 1.")
+        elif program_level == "PG":
 
-    major1_selections = [
-        p for p in [preference1, preference2, preference3]
-        if p != "Select Course"
-    ]
+            if preference1 == "Select Course":
+                errors.append("Please select Preference 1.")
 
-    if len(major1_selections) != len(set(major1_selections)):
-        errors.append("Major 1 preferences must be different.")
+            selected_preferences = [
+                p for p in [preference1, preference2, preference3]
+                if p != "Select Course"
+            ]
 
-    # Major 2 – Second Language validation
+            if len(selected_preferences) != len(set(selected_preferences)):
+                errors.append("Please select different courses for each preference.")
 
-    language_selections = [
-        p for p in [
-            second_language1,
-            second_language2,
-            second_language3
-        ]
-        if p != "Select Language"
-    ]
-
-    if len(language_selections) != len(set(language_selections)):
-        errors.append("Second Language preferences must be different.")
-
-elif program_level == "PG":
-
-    if preference1 == "Select Course":
-        errors.append("Please select Programme Preference 1.")
-
-    selected_preferences = [
-        p for p in [preference1, preference2, preference3]
-        if p != "Select Course"
-    ]
-
-    if len(selected_preferences) != len(set(selected_preferences)):
-        errors.append("Please select different courses for each preference.")
         # Academic qualification validation
 
         if program_level == "UG":
@@ -720,40 +640,51 @@ elif program_level == "PG":
             submission_date = now_ist.strftime("%d/%m/%Y")
             submission_time = now_ist.strftime("%I:%M %p")
 
-   # Save student details
+            # Save student details
 
-student_data = [
-    full_name,
-    dob.strftime("%d/%m/%Y"),
-    gender,
-    email,
-    contact_number,
-    guardian_contact,
-    address,
-    program_level,
+            student_data = [
+                full_name,
+                dob.strftime("%d/%m/%Y"),
+                gender,
+                email,
+                contact_number,
+                guardian_contact,
+                address,
+                program_level,
+                preference1,
+                preference2 if preference2 != "Select Course" else "",
+                preference3 if preference3 != "Select Course" else "",
+                board,
+                stream,
+                percentage,
+                submission_date,
+                submission_time,
+                ", ".join(residential_training)
+            ]
 
-    # Major 1 / Programme Preferences
-    preference1 if preference1 != "Select Course" else "",
-    preference2 if preference2 != "Select Course" else "",
-    preference3 if preference3 != "Select Course" else "",
+            try:
 
-    # Major 2 / Second Language Preferences
-    second_language1,
-    second_language2,
-    second_language3,
+                worksheet.append_row(
+                    student_data,
+                    value_input_option="USER_ENTERED"
+                )
 
-    # Academic Details
-    board,
-    stream,
-    percentage,
+                st.session_state["_registration_success"] = True
+                st.session_state["_clear_registration_form"] = True
 
-    # Submission Date and Time
-    submission_date,
-    submission_time,
+                st.rerun()
 
-    # Residential Training
-    ", ".join(residential_training)
-]        
+            except Exception as e:
+
+                st.error("Unable to save your registration. Please try again.")
+                st.write(e)
+
+        
+
+            
+
+
+                
 # ---------- FOOTER ----------
 
 st.markdown("""
