@@ -673,10 +673,10 @@ with st.container(border=True):
             errors.append("Please enter a valid email address.")
 
         if not validate_phone(contact_number):
-            errors.append("Enter a valid mobile number.")
+            errors.append("Enter a valid  contact number.")
 
         if not validate_phone(guardian_contact):
-            errors.append("Enter a valid mobile number.")
+            errors.append("Enter a valid Guardian's contact number.")
 
         if not address.strip():
             errors.append("Please enter your address.")
