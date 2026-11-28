@@ -24,25 +24,35 @@ st.set_page_config(
 
 if st.session_state.pop("_clear_registration_form", False):
 
-    reset_values = {
-        "full_name": "",
-        "dob": None,
-        "gender": "Select Gender",
-        "email": "",
-        "contact": "",
-        "guardian_contact": "",
-        "address": "",
-        "program_level": "Select Program",
-        "preference1": "Select Course",
-        "preference2": "Select Course",
-        "preference3": "Select Course",
-        "sslc_board": "Select Board",
-        "sslc_stream": "",
-        "sslc_percentage": "Select Percentage",
-        "plus_two_board": "Select Board",
-        "plus_two_stream": "Select Stream",
-        "plus_two_percentage": "Select Percentage"
-    }
+   reset_values = {
+    "full_name": "",
+    "dob": None,
+    "gender": "Select Gender",
+    "email": "",
+    "contact": "",
+    "guardian_contact": "",
+    "address": "",
+    "programme_level": "Select Programme",
+
+    "major1_pref1": "Select Course",
+    "major1_pref2": "Select Course",
+    "major1_pref3": "Select Course",
+
+    "major2_pref1": "Select Course",
+    "major2_pref2": "Select Course",
+    "major2_pref3": "Select Course",
+
+    "language_pref1": "Select Language",
+    "language_pref2": "Select Language",
+    "language_pref3": "Select Language",
+
+    "preference1": "Select Course",
+    "preference2": "Select Course",
+    "preference3": "Select Course",
+
+    "plus_two_board": "Select Board",
+    "plus_two_percentage": "Select Percentage"
+}
 
     for key, value in reset_values.items():
         st.session_state[key] = value
@@ -384,8 +394,6 @@ with st.container(border=True):
 
 # ---------- PROGRAMME DETAILS ----------
 
-st.markdown("## 2. Programme Details")
-
 SECOND_LANGUAGE_OPTIONS = [
     "Malayalam",
     "Hindi",
@@ -394,110 +402,174 @@ SECOND_LANGUAGE_OPTIONS = [
     "Tamil (Online)"
 ]
 
+st.markdown("## 2. Programme Details")
+
 with st.container(border=True):
 
     program_level = st.selectbox(
-        "Programme Level *",
+        "Programme Applied For *",
         ["Select Programme", "UG", "PG"],
         key="programme_level"
     )
-
-    st.markdown("### Programme Applied For")
 
     # ---------- UG PROGRAMME ----------
 
     if program_level == "UG":
 
-        st.markdown("**Major 1 – Programme Preferences**")
+        st.markdown("### Major 1 – Programme Preferences")
 
-        major1_pref1 = st.selectbox(
-            "Major 1 (Preference 1) *",
-            ["Select Course"] + UG_COURSES,
-            key="major1_pref1"
-        )
+        col1, col2, col3 = st.columns(3)
 
-        major1_pref2 = st.selectbox(
-            "Major 1 (Preference 2)",
-            ["Select Course"] + UG_COURSES,
-            key="major1_pref2"
-        )
+        with col1:
+            major1_pref1 = st.selectbox(
+                "Major 1 (Preference 1) *",
+                ["Select Course"] + UG_COURSES,
+                key="major1_pref1"
+            )
 
-        major1_pref3 = st.selectbox(
-            "Major 1 (Preference 3)",
-            ["Select Course"] + UG_COURSES,
-            key="major1_pref3"
-        )
+        with col2:
+            major1_pref2 = st.selectbox(
+                "Major 1 (Preference 2)",
+                ["Select Course"] + UG_COURSES,
+                key="major1_pref2"
+            )
+
+        with col3:
+            major1_pref3 = st.selectbox(
+                "Major 1 (Preference 3)",
+                ["Select Course"] + UG_COURSES,
+                key="major1_pref3"
+            )
 
         st.markdown("---")
 
-        st.markdown("**Major 2 – Second Language Preferences (Optional)**")
+        # ---------- MAJOR 2 ----------
 
-        major2_pref1 = st.selectbox(
-            "Major 2 (Preference 1)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref1"
-        )
+        st.markdown("### Major 2 – Programme Preferences (Optional)")
 
-        major2_pref2 = st.selectbox(
-            "Major 2 (Preference 2)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref2"
-        )
+        col1, col2, col3 = st.columns(3)
 
-        major2_pref3 = st.selectbox(
-            "Major 2 (Preference 3)",
-            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
-            key="major2_pref3"
-        )
+        with col1:
+            major2_pref1 = st.selectbox(
+                "Major 2 (Preference 1)",
+                ["Select Course"] + UG_COURSES,
+                key="major2_pref1"
+            )
 
-        # Store values for submission
-        preference1 = major1_pref1
-        preference2 = major1_pref2
-        preference3 = major1_pref3
+        with col2:
+            major2_pref2 = st.selectbox(
+                "Major 2 (Preference 2)",
+                ["Select Course"] + UG_COURSES,
+                key="major2_pref2"
+            )
 
-        second_language1 = major2_pref1
-        second_language2 = major2_pref2
-        second_language3 = major2_pref3
+        with col3:
+            major2_pref3 = st.selectbox(
+                "Major 2 (Preference 3)",
+                ["Select Course"] + UG_COURSES,
+                key="major2_pref3"
+            )
 
     # ---------- PG PROGRAMME ----------
 
     elif program_level == "PG":
 
-        st.markdown("**Programme Preferences**")
+        st.markdown("### Major 1 – Programme Preferences")
 
-        preference1 = st.selectbox(
-            "Programme Preference 1 *",
-            ["Select Course"] + PG_COURSES,
-            key="preference1"
-        )
+        col1, col2, col3 = st.columns(3)
 
-        preference2 = st.selectbox(
-            "Programme Preference 2",
-            ["Select Course"] + PG_COURSES,
-            key="preference2"
-        )
+        with col1:
+            major1_pref1 = st.selectbox(
+                "Major 1 (Preference 1) *",
+                ["Select Course"] + PG_COURSES,
+                key="major1_pref1"
+            )
 
-        preference3 = st.selectbox(
-            "Programme Preference 3",
-            ["Select Course"] + PG_COURSES,
-            key="preference3"
-        )
+        with col2:
+            major1_pref2 = st.selectbox(
+                "Major 1 (Preference 2)",
+                ["Select Course"] + PG_COURSES,
+                key="major1_pref2"
+            )
 
-        second_language1 = ""
-        second_language2 = ""
-        second_language3 = ""
+        with col3:
+            major1_pref3 = st.selectbox(
+                "Major 1 (Preference 3)",
+                ["Select Course"] + PG_COURSES,
+                key="major1_pref3"
+            )
+
+        st.markdown("---")
+
+        # ---------- MAJOR 2 ----------
+
+        st.markdown("### Major 2 – Programme Preferences (Optional)")
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            major2_pref1 = st.selectbox(
+                "Major 2 (Preference 1)",
+                ["Select Course"] + PG_COURSES,
+                key="major2_pref1"
+            )
+
+        with col2:
+            major2_pref2 = st.selectbox(
+                "Major 2 (Preference 2)",
+                ["Select Course"] + PG_COURSES,
+                key="major2_pref2"
+            )
+
+        with col3:
+            major2_pref3 = st.selectbox(
+                "Major 2 (Preference 3)",
+                ["Select Course"] + PG_COURSES,
+                key="major2_pref3"
+            )
 
     else:
 
         st.info("Please select UG or PG to view available programmes.")
 
-        preference1 = "Select Course"
-        preference2 = "Select Course"
-        preference3 = "Select Course"
+        major1_pref1 = "Select Course"
+        major1_pref2 = "Select Course"
+        major1_pref3 = "Select Course"
 
-        second_language1 = ""
-        second_language2 = ""
-        second_language3 = ""
+        major2_pref1 = "Select Course"
+        major2_pref2 = "Select Course"
+        major2_pref3 = "Select Course"
+
+    # ---------- SECOND LANGUAGE PREFERENCE ----------
+
+    st.markdown("---")
+    st.markdown("### Second Language Preference")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        language_pref1 = st.selectbox(
+            "Second Language (Preference 1) *",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="language_pref1"
+        )
+
+    with col2:
+        language_pref2 = st.selectbox(
+            "Second Language (Preference 2)",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="language_pref2"
+        )
+
+    with col3:
+        language_pref3 = st.selectbox(
+            "Second Language (Preference 3)",
+            ["Select Language"] + SECOND_LANGUAGE_OPTIONS,
+            key="language_pref3"
+        )
+
+# ---------- END OF PROGRAMME DETAILS ----------
+
         
 # ---------- ACADEMIC QUALIFICATION ----------
 
@@ -618,11 +690,11 @@ with st.container(border=True):
 
         # Course validation
 
-if program_level == "Select Programme":
-
-    errors.append("Please select UG or PG.")
-
-elif program_level == "UG":
+        if program_level == "Select Programme":
+        
+            errors.append("Please select UG or PG.")
+        
+        elif program_level == "UG":
 
     # Major 1 validation
 
