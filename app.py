@@ -665,7 +665,7 @@ elif program_level == "PG":
     ]
 
     if len(selected_preferences) != len(set(selected_preferences)):
-        errors.append("Please select different courses for each preference."
+        errors.append("Please select different courses for each preference.")
         # Academic qualification validation
 
         if program_level == "UG":
